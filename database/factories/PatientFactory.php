@@ -11,23 +11,23 @@ class PatientFactory extends Factory
 {
     protected $model = Patient::class;
 
-    public function definition() : array
+    public function definition(): array
     {
         return [
-            'status'      => fake()->randomElement(PatientStatus::cases()),
+            'status' => fake()->randomElement(PatientStatus::cases()),
 
-            'first_name'  => $this->faker->firstName(),
+            'first_name' => $this->faker->firstName(),
             'middle_name' => $this->faker->firstName(),
-            'last_name'   => $this->faker->lastName(),
-            'dob'         => Carbon::now(),
+            'last_name' => $this->faker->lastName(),
+            'dob' => Carbon::now(),
 
-            'gender'      => $this->faker->word(),
-            'email'       => $this->faker->unique()
-                                         ->safeEmail(),
-            'password'    => bcrypt($this->faker->password()),
+            'gender' => $this->faker->word(),
+            'email' => $this->faker->unique()
+                ->safeEmail(),
+            'password' => bcrypt($this->faker->password()),
 
-            'created_at'  => Carbon::now(),
-            'updated_at'  => Carbon::now(),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
         ];
     }
 }

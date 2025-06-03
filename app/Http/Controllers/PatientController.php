@@ -6,10 +6,7 @@ use App\Models\Patient;
 
 class PatientController extends Controller
 {
-    public function index()
-    {
-
-    }
+    public function index() {}
 
     public function details(Patient $patient)
     {

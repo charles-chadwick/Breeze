@@ -11,6 +11,9 @@ class Patient extends Model
 {
     use HasFactory, SoftDeletes;
 
+    /**
+     * @var string[]
+     */
     protected $fillable = [
         'status',
         'first_name',
@@ -22,18 +25,44 @@ class Patient extends Model
         'gender',
     ];
 
-    protected function casts() : array
+    /**
+     * @return string[]
+     */
+    protected function casts(): array
     {
         return [
             'dob' => 'date',
         ];
     }
 
-    protected function getDobAttribute() : string  {
-        return Carbon::parse($this->attributes['dob'])->format('m/d/Y');
+    /**
+     * @return int
+     */
+    protected function getAgeAttribute(): int
+    {
+        return Carbon::parse($this->attributes['dob'])->age;
     }
 
-    protected function getFullNameAttribute() : string  {
-        return "{$this->first_name} {$this->middle_name} {$this->last_name}";
+    /**
+     * @return string
+     */
+    protected function getDobAttribute(): string
+    {
+        return Carbon::parse($this->attributes['dob'])
+            ->format('m/d/Y');
+    }
+
+    /**
+     * @return string
+     */
+    protected function getFullNameAttribute(): string
+    {
+        return collect([
+            $this->first_name,
+            $this->middle_name,
+            $this->last_name,
+        ])
+            ->filter(fn ($value) => trim($value))
+            ->implode(' ');
     }
 }

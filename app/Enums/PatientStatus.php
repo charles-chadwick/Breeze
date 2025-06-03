@@ -4,7 +4,7 @@ namespace App\Enums;
 
 enum PatientStatus: string
 {
-    case Active   = 'Active';
+    case Active = 'Active';
     case Inactive = 'Inactive';
-    case Prospective  = 'Prospective';
+    case Prospective = 'Prospective';
 }

@@ -8,10 +8,10 @@ Route::get('/', function () {
 });
 
 Route::prefix('patients')
-     ->group(function () {
-         Route::get('/details/{patient}', [
-             PatientController::class,
-             'details'
-         ])
-              ->name('patients.details');
-     });
+    ->group(function () {
+        Route::get('/details/{patient}', [
+            PatientController::class,
+            'details',
+        ])
+            ->name('patients.details');
+    });
