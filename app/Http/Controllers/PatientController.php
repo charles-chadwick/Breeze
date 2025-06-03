@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\PatientStatus;
 use App\Models\Patient;
 
 class PatientController extends Controller
 {
     public function index() {
-        $patients = Patient::where('status', 'Active')->get();
+        $patients = Patient::byStatus(PatientStatus::Inactive)->get();
         return view('patients.index', compact('patients'));
     }
 

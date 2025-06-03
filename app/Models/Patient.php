@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\PatientStatus;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -64,5 +65,9 @@ class Patient extends Model
         ])
             ->filter(fn ($value) => trim($value))
             ->implode(' ');
+    }
+
+    protected function scopeByStatus($query, PatientStatus $status) {
+        return $query->where('status', $status);
     }
 }

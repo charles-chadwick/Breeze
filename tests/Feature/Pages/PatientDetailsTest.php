@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Pages;
 
+use App\Enums\PatientStatus;
 use App\Models\Patient;
 
 use Illuminate\Database\Eloquent\Factories\Sequence;
@@ -11,14 +12,14 @@ it('can view patient details', function () {
 
     // Arrange
     $patient = Patient::factory()
-        ->create([
-            'first_name' => 'Fred',
-            'middle_name' => 'Rockhead',
-            'last_name' => 'Flintstone',
-            'dob' => '1980-01-01',
-            'gender' => 'Male',
-            'status' => 'Active',
-        ]);
+                      ->create([
+                          'first_name'  => 'Fred',
+                          'middle_name' => 'Rockhead',
+                          'last_name'   => 'Flintstone',
+                          'dob'         => '1980-01-01',
+                          'gender'      => 'Male',
+                          'status'      => 'Active',
+                      ]);
 
     // Act & Assert
     get(route('patients.details', $patient))
@@ -30,17 +31,35 @@ it('can view patient details', function () {
         ->assertSeeText('Active');
 });
 
-it('can view a list of active patients', function () {
+it('can view a list of patients', function () {
 
     // Arrange
     $patients = Patient::factory()
-        ->state(new Sequence(['status' => 'Active'], ['status' => 'Inactive']))
-        ->count(2)
-        ->create();
+                       ->count(2)
+                       ->create(['status' => PatientStatus::Inactive]);
 
     // Act & Assert
     get(route('patients.index'))
         ->assertOk()
-        ->assertSeeText($patients->first()->full_name)
+        ->assertSeeText([
+            $patients->first()->full_name,
+            $patients->last()->full_name
+        ]);
+});
+
+it('can view a list of patients by status', function () {
+
+    // Arrange
+    $patients = Patient::factory()
+                       ->state(new Sequence(['status' => 'Inactive'], ['status' => 'Active']))
+                       ->count(2)
+                       ->create();
+
+    // Act & Assert
+    get(route('patients.index'))
+        ->assertOk()
+        ->assertSeeText(
+            $patients->first()->full_name,
+        )
         ->assertDontSeeText($patients->last()->full_name);
 });
