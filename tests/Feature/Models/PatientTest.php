@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Patient;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 
 it('shows the properly formatted full name', function () {
@@ -25,4 +26,15 @@ it('shows the properly formatted full name', function () {
         ->toBe('Homer Jay Simpson')
         ->and($patients[1]->full_name)
         ->toBe('Barnard Gumble');
+});
+
+it('shows the proper age', function () {
+
+    // Arrange
+    $patient = Patient::factory()
+        ->create(['dob' => Carbon::now()->subYears(10)]);
+
+    // Act & Assert
+    expect($patient->age)
+        ->toBe(10);
 });
