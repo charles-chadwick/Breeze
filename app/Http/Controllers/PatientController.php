@@ -8,7 +8,9 @@ use App\Models\Patient;
 class PatientController extends Controller
 {
     public function index() {
-        $patients = Patient::byStatus(request('status'))->get();
+        $patients = Patient::byStatus(request('status'))
+                           ->orderBy(request('order_by', 'first_name'), request('order_direction', 'asc'))
+                           ->get();
         return view('patients.index', compact('patients'));
     }
 

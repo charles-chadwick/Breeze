@@ -51,15 +51,16 @@ it('can view a list of patients by status', function () {
 
     // Arrange
     $patients = Patient::factory()
-                       ->state(new Sequence(['status' => 'Inactive'], ['status' => 'Active']))
-                       ->count(2)
+                       ->state(new Sequence(
+                           ['status' => 'Inactive'], ['status' => 'Active'], ['status' => 'Prospective']))
+                       ->count(3)
                        ->create();
 
     // Act & Assert
-    get(route('patients.index', ['status' => PatientStatus::Inactive]))
+    get(route('patients.index', ['status' => [PatientStatus::Inactive, PatientStatus::Active]]))
         ->assertOk()
         ->assertSeeText(
-            $patients->first()->full_name,
-        )
-        ->assertDontSeeText($patients->last()->full_name);
+            $patients[0]->full_name,
+            $patients[1]->full_name,
+        )->assertDontSeeText($patients[2]->full_name);
 });

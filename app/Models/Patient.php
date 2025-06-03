@@ -76,11 +76,12 @@ class Patient extends Model
      * @param $status
      * @return Builder
      * @todo Error handling for the status var, either here or in Middleware
+     * @todo Add in multiple status fields if array
      */
     protected function scopeByStatus($query, $status = null) : Builder
     {
         return $query->when($status, function ($query, $status) {
-            return $query->where('status', $status);
+            return $query->whereIn('status', $status);
         });
     }
 }
