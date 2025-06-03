@@ -9,8 +9,9 @@ class EncounterController extends Controller
     public function __invoke(Patient $patient)
     {
         $encounters = $patient->encounters()
-                              ->orderBy('date_of_service')
-                              ->get();
+            ->filterByStatus()
+            ->orderBy(request('order_by', 'date_of_service'), request('order_direction', 'asc'))
+            ->get();
 
         return view('encounters.index', [
             'encounters' => $encounters,

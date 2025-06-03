@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\EncounterStatus;
+use App\Models\Traits\Filters\ByStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Encounter extends Model
 {
-    use HasFactory, SoftDeletes;
+    use ByStatus, HasFactory, SoftDeletes;
 
     protected $fillable = [
         'type',
@@ -21,21 +22,16 @@ class Encounter extends Model
         'status',
     ];
 
-    protected function casts() : array
+    protected function casts(): array
     {
         return [
             'date_of_service' => 'datetime',
-            'status'          => EncounterStatus::class,
+            'status' => EncounterStatus::class,
         ];
     }
 
-    public function patient() : BelongsTo
+    public function patient(): BelongsTo
     {
         return $this->belongsTo(Patient::class);
-    }
-
-    public function scopeByStatus($query, EncounterStatus $status = null)
-    {
-        return $query->when($status, fn($query, $status) => $query->whereIn('status', $status));
     }
 }
