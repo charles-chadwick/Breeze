@@ -8,7 +8,7 @@ use App\Models\Patient;
 class PatientController extends Controller
 {
     public function index() {
-        $patients = Patient::byStatus(PatientStatus::Inactive)->get();
+        $patients = Patient::byStatus(request('status'))->get();
         return view('patients.index', compact('patients'));
     }
 

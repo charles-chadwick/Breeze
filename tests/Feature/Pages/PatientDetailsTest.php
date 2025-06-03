@@ -56,7 +56,7 @@ it('can view a list of patients by status', function () {
                        ->create();
 
     // Act & Assert
-    get(route('patients.index'))
+    get(route('patients.index', ['status' => PatientStatus::Inactive]))
         ->assertOk()
         ->assertSeeText(
             $patients->first()->full_name,

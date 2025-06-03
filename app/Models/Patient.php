@@ -4,9 +4,12 @@ namespace App\Models;
 
 use App\Enums\PatientStatus;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\HigherOrderWhenProxy;
+use LaravelIdea\Helper\App\Models\_IH_Patient_QB;
 
 class Patient extends Model
 {
@@ -29,45 +32,55 @@ class Patient extends Model
     /**
      * @return string[]
      */
-    protected function casts(): array
+    protected function casts() : array
     {
         return [
-            'dob' => 'date',
+            'dob'    => 'date',
+            'status' => PatientStatus::class
         ];
     }
 
     /**
      * @return int
      */
-    protected function getAgeAttribute(): int
+    protected function getAgeAttribute() : int
     {
-        return Carbon::parse($this->attributes['dob'])->age;
+        return Carbon::parse($this->attributes[ 'dob' ])->age;
     }
 
     /**
      * @return string
      */
-    protected function getDobAttribute(): string
+    protected function getDobAttribute() : string
     {
-        return Carbon::parse($this->attributes['dob'])
-            ->format('m/d/Y');
+        return Carbon::parse($this->attributes[ 'dob' ])
+                     ->format('m/d/Y');
     }
 
     /**
      * @return string
      */
-    protected function getFullNameAttribute(): string
+    protected function getFullNameAttribute() : string
     {
         return collect([
             $this->first_name,
             $this->middle_name,
             $this->last_name,
         ])
-            ->filter(fn ($value) => trim($value))
+            ->filter(fn($value) => trim($value))
             ->implode(' ');
     }
 
-    protected function scopeByStatus($query, PatientStatus $status) {
-        return $query->where('status', $status);
+    /**
+     * @param $query
+     * @param $status
+     * @return Builder
+     * @todo Error handling for the status var, either here or in Middleware
+     */
+    protected function scopeByStatus($query, $status = null) : Builder
+    {
+        return $query->when($status, function ($query, $status) {
+            return $query->where('status', $status);
+        });
     }
 }
