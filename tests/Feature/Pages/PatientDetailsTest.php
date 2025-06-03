@@ -4,6 +4,7 @@ namespace Tests\Feature\Pages;
 
 use App\Models\Patient;
 
+use Illuminate\Database\Eloquent\Factories\Sequence;
 use function Pest\Laravel\get;
 
 it('can view patient details', function () {
@@ -27,4 +28,19 @@ it('can view patient details', function () {
         ->assertSeeText($patient->gender)
         ->assertSeeText($patient->email)
         ->assertSeeText('Active');
+});
+
+it('can view a list of active patients', function () {
+
+    // Arrange
+    $patients = Patient::factory()
+        ->state(new Sequence(['status' => 'Active'], ['status' => 'Inactive']))
+        ->count(2)
+        ->create();
+
+    // Act & Assert
+    get(route('patients.index'))
+        ->assertOk()
+        ->assertSeeText($patients->first()->full_name)
+        ->assertDontSeeText($patients->last()->full_name);
 });

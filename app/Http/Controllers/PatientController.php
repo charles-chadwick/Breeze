@@ -6,7 +6,10 @@ use App\Models\Patient;
 
 class PatientController extends Controller
 {
-    public function index() {}
+    public function index() {
+        $patients = Patient::where('status', 'Active')->get();
+        return view('patients.index', compact('patients'));
+    }
 
     public function details(Patient $patient)
     {
