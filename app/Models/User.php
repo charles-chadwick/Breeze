@@ -49,9 +49,6 @@ class User extends Authenticatable
         ];
     }
 
-    /**
-     * @return string
-     */
     protected function getFullNameAttribute(): string
     {
         return collect([
@@ -63,13 +60,10 @@ class User extends Authenticatable
             ->implode(' ');
     }
 
-    /**
-     * @return BelongsToMany
-     */
     public function encounters(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'encounter_users')
-                    ->withTimestamps()
-                    ->orderByDesc('pivot_created_at');
+        return $this->belongsToMany(Encounter::class, 'encounter_users')
+            ->withTimestamps()
+            ->orderByDesc('pivot_created_at');
     }
 }
