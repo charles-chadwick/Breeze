@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use App\Enums\EncounterStatus;
-use App\Models\Traits\Filters\ByStatus;
-use App\Models\Traits\Filters\ByType;
+use App\Models\Traits\FilterByStatus;
+use App\Models\Traits\FilterByType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Encounter extends Model
 {
-    use ByStatus, ByType;
+    use FilterByStatus, FilterByType;
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
