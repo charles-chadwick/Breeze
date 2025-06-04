@@ -72,7 +72,12 @@ class Patient extends Base implements AuthenticatableContract, AuthorizableContr
             ->implode(' ');
     }
 
-    public function encounters(): Patient|HasMany
+    public function appointments(): HasMany
+    {
+        return $this->hasMany(Appointment::class);
+    }
+
+    public function encounters(): HasMany
     {
         return $this->hasMany(Encounter::class);
     }

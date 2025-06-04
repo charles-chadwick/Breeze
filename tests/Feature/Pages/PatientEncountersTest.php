@@ -19,7 +19,8 @@ it('shows all patient encounters', function () {
     // Act & Assert
     get(route('patients.encounters', $patient))
         ->assertOk()
-        ->assertSeeText($patient->encounters->first()->title);
+        ->assertSeeText($patient->encounters->first()->title)
+        ->assertSeeText("{$patient->encounters->count()} Encounters");
 });
 
 it('only shows signed patient encounters', function () {
