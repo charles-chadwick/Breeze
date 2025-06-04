@@ -12,19 +12,18 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 
 /**
  * @property mixed $encounters
  */
-class Patient extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
+class Patient extends Base implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
+    use HasFactory;
     use Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail;
     use FilterByStatus;
-    use HasFactory, SoftDeletes;
+
 
     /**
      * @var string[]
