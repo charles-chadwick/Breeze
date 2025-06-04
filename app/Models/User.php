@@ -58,7 +58,6 @@ class User extends Base implements AuthenticatableContract, AuthorizableContract
     {
         return collect([
             $this->first_name,
-            $this->middle_name,
             $this->last_name,
         ])
             ->filter(fn ($value) => trim($value))
