@@ -11,8 +11,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Encounter extends Base
 {
-    use HasFactory;
     use FilterByStatus, FilterByType;
+    use HasFactory;
 
     protected $fillable = [
         'type',

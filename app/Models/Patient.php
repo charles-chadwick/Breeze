@@ -20,10 +20,9 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
  */
 class Patient extends Base implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
-    use HasFactory;
     use Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail;
     use FilterByStatus;
-
+    use HasFactory;
 
     /**
      * @var string[]

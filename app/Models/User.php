@@ -14,8 +14,8 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Base implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
-    use HasFactory;
     use Authenticatable, Authorizable, CanResetPassword;
+    use HasFactory;
     use Notifiable;
 
     /**
@@ -67,7 +67,7 @@ class User extends Base implements AuthenticatableContract, AuthorizableContract
     public function appointments(): BelongsToMany
     {
         return $this->belongsToMany(Appointment::class, 'appointment_users')
-                    ->withTimestamps();
+            ->withTimestamps();
     }
 
     public function encounters(): BelongsToMany
