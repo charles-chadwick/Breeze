@@ -62,7 +62,6 @@ class Appointment extends Base
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'appointment_users')
-                    ->withTimestamps()
-                    ->orderByDesc('pivot_created_at');
+                    ->withTimestamps();
     }
 }
