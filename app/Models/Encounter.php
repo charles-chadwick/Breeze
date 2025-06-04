@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\EncounterStatus;
 use App\Models\Traits\Filters\ByStatus;
+use App\Models\Traits\Filters\ByType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -11,7 +12,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Encounter extends Model
 {
-    use ByStatus, HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes;
+    use ByStatus, ByType;
 
     protected $fillable = [
         'type',

@@ -40,6 +40,24 @@ it('only shows signed patient encounters', function () {
         ->assertDontSeeText($patient->encounters->last()->status);
 });
 
+it('only shows patient encounters of a specific type', function () {
+
+    // Arrange
+    $patient = Patient::factory()
+        ->has(Encounter::factory()->state(new Sequence(
+            ['type' => 'Should See'],
+            ['type' => 'Should Not See'],
+        ))
+            ->count(2))
+        ->create();
+
+    // Act & Assert
+    get(route('patients.encounters', ['patient' => $patient, 'type' => 'Should See']))
+        ->assertOk()
+        ->assertSeeText($patient->encounters->first()->title)
+        ->assertDontSeeText($patient->encounters->last()->title);
+});
+
 it('shows patient encounters in descending order', function () {
 
     // Arrange
