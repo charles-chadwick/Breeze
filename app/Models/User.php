@@ -64,6 +64,13 @@ class User extends Base implements AuthenticatableContract, AuthorizableContract
             ->implode(' ');
     }
 
+    public function appointments(): BelongsToMany
+    {
+        return $this->belongsToMany(Appointment::class, 'appointment_users')
+                    ->withTimestamps()
+                    ->orderByDesc('pivot_created_at');
+    }
+
     public function encounters(): BelongsToMany
     {
         return $this->belongsToMany(Encounter::class, 'encounter_users')

@@ -7,6 +7,7 @@ use App\Models\Scopes\FilterByType;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Appointment extends Base
 {
@@ -56,5 +57,12 @@ class Appointment extends Base
     public function patient() : BelongsTo
     {
         return $this->belongsTo(Patient::class);
+    }
+
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'appointment_users')
+                    ->withTimestamps()
+                    ->orderByDesc('pivot_created_at');
     }
 }
