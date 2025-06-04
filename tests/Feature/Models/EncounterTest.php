@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Appointment;
 use App\Models\Encounter;
 use App\Models\Patient;
 use App\Models\User;
@@ -26,4 +27,18 @@ it('has users', function () {
     expect($encounter->users)
         ->toHaveCount(3)
         ->each->toBeInstanceOf(User::class);
+});
+
+it('has is associated with an appointment', function () {
+
+    // Arrange
+    $encounter = Encounter::factory()
+        ->create([
+            'appointment_id' => Appointment::factory()
+                                   ->create(),
+        ]);
+
+    // Act & Assert
+    expect($encounter->appointment)
+        ->toBeInstanceOf(Appointment::class);
 });

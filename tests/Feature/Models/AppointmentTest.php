@@ -2,6 +2,7 @@
 
 use App\Enums\AppointmentStatus;
 use App\Models\Appointment;
+use App\Models\Encounter;
 use App\Models\Patient;
 use App\Models\User;
 
@@ -25,6 +26,20 @@ it('has users', function () {
     expect($appointment->users)
         ->toHaveCount(3)
         ->each->toBeInstanceOf(User::class);
+});
+
+it('has encounters', function () {
+
+    // Arrange
+    $appointment = Appointment::factory()
+                              ->has(Encounter::factory()->count(3))
+                              ->create();
+    // Act & Assert
+    expect($appointment->encounters)
+        ->toHaveCount(3)
+        ->each->toBeInstanceOf(Encounter::class);
+
+
 });
 
 it('cannot be double booked', function () {

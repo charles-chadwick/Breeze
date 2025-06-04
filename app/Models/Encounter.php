@@ -8,6 +8,7 @@ use App\Models\Scopes\FilterByType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Encounter extends Base
 {
@@ -18,6 +19,7 @@ class Encounter extends Base
         'type',
         'date_of_service',
         'patient_id',
+        'appointment_id',
         'title',
         'content',
         'status',
@@ -29,6 +31,10 @@ class Encounter extends Base
             'date_of_service' => 'datetime',
             'status' => EncounterStatus::class,
         ];
+    }
+
+    public function appointment() : BelongsTo {
+        return $this->belongsTo(Appointment::class);
     }
 
     public function patient(): BelongsTo

@@ -11,6 +11,7 @@ return new class extends Migration
         Schema::create('encounters', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('patient_id');
+            $table->unsignedBigInteger('appointment_id')->nullable();
             $table->dateTime('date_of_service');
             $table->string('type');
             $table->string('status');

@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Appointment extends Base
 {
@@ -93,6 +94,14 @@ class Appointment extends Base
             })
             ->count() > 0;
 
+    }
+
+    /**
+     * The encounters
+     * @return HasMany
+     */
+    public function encounters(): HasMany {
+        return $this->hasMany(Encounter::class);
     }
 
     /**
