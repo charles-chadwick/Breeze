@@ -20,16 +20,13 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 /**
  * @property mixed $encounters
  */
-class Patient extends Model implements
-    AuthenticatableContract,
-    AuthorizableContract,
-    CanResetPasswordContract
+class Patient extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
     use Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail;
-    use HasFactory, SoftDeletes;
     use FilterByStatus;
+    use HasFactory, SoftDeletes;
 
-        /**
+    /**
      * @var string[]
      */
     protected $fillable = [
@@ -54,26 +51,17 @@ class Patient extends Model implements
         ];
     }
 
-    /**
-     * @return int
-     */
     protected function getAgeAttribute(): int
     {
         return Carbon::parse($this->attributes['dob'])->age;
     }
 
-    /**
-     * @return string
-     */
     protected function getDobAttribute(): string
     {
         return Carbon::parse($this->attributes['dob'])
             ->format('m/d/Y');
     }
 
-    /**
-     * @return string
-     */
     protected function getFullNameAttribute(): string
     {
         return collect([
@@ -85,9 +73,6 @@ class Patient extends Model implements
             ->implode(' ');
     }
 
-    /**
-     * @return Patient|HasMany
-     */
     public function encounters(): Patient|HasMany
     {
         return $this->hasMany(Encounter::class);
