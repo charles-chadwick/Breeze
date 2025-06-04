@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Encounter;
 use App\Models\Patient;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Sequence;
@@ -32,9 +33,23 @@ it('shows the proper age', function () {
 
     // Arrange
     $patient = Patient::factory()
-        ->create(['dob' => Carbon::now()->subYears(10)]);
+        ->create([
+            'dob' => Carbon::now()
+                ->subYears(10),
+        ]);
 
     // Act & Assert
-    expect($patient->age)
-        ->toBe(10);
+    expect($patient->age)->toBe(10);
+});
+
+it('has encounters', function () {
+
+    // Arrange
+    $patient = Patient::factory()
+        ->has(Encounter::factory()
+            ->count(2))
+        ->create();
+
+    // Act & Assert
+    expect($patient->encounters)->toHaveCount(2)->each->toBeInstanceOf(Encounter::class);
 });

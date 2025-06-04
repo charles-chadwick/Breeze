@@ -15,7 +15,6 @@ class EncounterFactory extends Factory
     {
         return [
             'type' => $this->faker->word(),
-
             'date_of_service' => Carbon::now(),
             'patient_id' => $this->faker->randomNumber(),
             'title' => $this->faker->word(),

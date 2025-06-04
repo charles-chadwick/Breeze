@@ -8,12 +8,13 @@ use App\Models\Traits\Filters\ByType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Encounter extends Model
 {
-    use HasFactory, SoftDeletes;
     use ByStatus, ByType;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'type',
@@ -35,5 +36,12 @@ class Encounter extends Model
     public function patient(): BelongsTo
     {
         return $this->belongsTo(Patient::class);
+    }
+
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'encounter_users')
+            ->withTimestamps()
+            ->orderByDesc('pivot_created_at');
     }
 }
