@@ -3,8 +3,7 @@
 namespace App\Models;
 
 use App\Enums\PatientStatus;
-use App\Models\Traits\FilterByStatus;
-use App\Models\Traits\HasFullName;
+use App\Models\Scopes\FilterByStatus;
 use Carbon\Carbon;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
@@ -28,7 +27,6 @@ class Patient extends Model implements
 {
     use Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail;
     use HasFactory, SoftDeletes;
-    use HasFullName;
     use FilterByStatus;
 
         /**
@@ -56,18 +54,40 @@ class Patient extends Model implements
         ];
     }
 
+    /**
+     * @return int
+     */
     protected function getAgeAttribute(): int
     {
         return Carbon::parse($this->attributes['dob'])->age;
     }
 
+    /**
+     * @return string
+     */
     protected function getDobAttribute(): string
     {
         return Carbon::parse($this->attributes['dob'])
             ->format('m/d/Y');
     }
 
+    /**
+     * @return string
+     */
+    protected function getFullNameAttribute(): string
+    {
+        return collect([
+            $this->first_name,
+            $this->middle_name,
+            $this->last_name,
+        ])
+            ->filter(fn ($value) => trim($value))
+            ->implode(' ');
+    }
 
+    /**
+     * @return Patient|HasMany
+     */
     public function encounters(): Patient|HasMany
     {
         return $this->hasMany(Encounter::class);

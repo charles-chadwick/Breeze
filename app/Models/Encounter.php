@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use App\Enums\EncounterStatus;
-use App\Models\Traits\FilterByStatus;
-use App\Models\Traits\FilterByType;
+use App\Models\Scopes\FilterByStatus;
+use App\Models\Scopes\FilterByType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;

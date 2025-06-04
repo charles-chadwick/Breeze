@@ -3,8 +3,6 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Models\Traits\HasFullName;
-use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -12,9 +10,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
-    use HasFullName;
 
     /**
      * The attributes that are mass assignable.
@@ -22,7 +18,10 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'status',
+        'role',
+        'first_name',
+        'last_name',
         'email',
         'password',
     ];
@@ -50,6 +49,23 @@ class User extends Authenticatable
         ];
     }
 
+    /**
+     * @return string
+     */
+    protected function getFullNameAttribute(): string
+    {
+        return collect([
+            $this->first_name,
+            $this->middle_name,
+            $this->last_name,
+        ])
+            ->filter(fn ($value) => trim($value))
+            ->implode(' ');
+    }
+
+    /**
+     * @return BelongsToMany
+     */
     public function encounters(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'encounter_users')
