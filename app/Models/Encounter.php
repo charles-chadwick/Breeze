@@ -8,7 +8,6 @@ use App\Models\Scopes\FilterByType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Encounter extends Base
 {
@@ -44,7 +43,7 @@ class Encounter extends Base
 
     public function users(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'encounter_users')
+        return $this->belongsToMany(User::class, 'encounters_users')
             ->withTimestamps();
     }
 }

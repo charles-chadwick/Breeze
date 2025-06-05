@@ -72,7 +72,7 @@ class User extends Base implements AuthenticatableContract, AuthorizableContract
 
     public function encounters(): BelongsToMany
     {
-        return $this->belongsToMany(Encounter::class, 'encounter_users')
+        return $this->belongsToMany(Encounter::class, 'encounters_users')
             ->withTimestamps();
     }
 }
