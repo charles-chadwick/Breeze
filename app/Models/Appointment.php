@@ -119,7 +119,7 @@ class Appointment extends Base
      */
     public function users(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'appointment_users')
+        return $this->belongsToMany(User::class, 'appointments_users')
             ->withTimestamps();
     }
 }

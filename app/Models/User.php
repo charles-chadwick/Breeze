@@ -66,7 +66,7 @@ class User extends Base implements AuthenticatableContract, AuthorizableContract
 
     public function appointments(): BelongsToMany
     {
-        return $this->belongsToMany(Appointment::class, 'appointment_users')
+        return $this->belongsToMany(Appointment::class, 'appointments_users')
             ->withTimestamps();
     }
 
