@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Appointment;
 use App\Models\Encounter;
 use App\Models\Patient;
 use Carbon\Carbon;
@@ -51,5 +52,21 @@ it('has encounters', function () {
         ->create();
 
     // Act & Assert
-    expect($patient->encounters)->toHaveCount(2)->each->toBeInstanceOf(Encounter::class);
+    expect($patient->encounters)
+        ->toHaveCount(2)
+        ->each->toBeInstanceOf(Encounter::class);
+});
+
+it('has appointments', function () {
+
+    // Arrange
+    $patient = Patient::factory()
+        ->has(Appointment::factory()
+                         ->count(3))
+        ->create();
+
+    // Act & Assert
+    expect($patient->appointments)
+        ->toHaveCount(3)
+        ->each->toBeInstanceOf(Appointment::class);
 });
