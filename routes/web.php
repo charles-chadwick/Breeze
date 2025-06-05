@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\DiscussionsController;
 use App\Http\Controllers\EncounterController;
 use App\Http\Controllers\PatientController;
 use Illuminate\Support\Facades\Route;
@@ -24,4 +25,5 @@ Route::prefix('patients')
 
         Route::get('/{patient}/encounters/', EncounterController::class)->name('patients.encounters');
         Route::get('/{patient}/appointments/', AppointmentController::class)->name('patients.appointments');
+        Route::get('/{patient}/discussions/', DiscussionsController::class)->name('patients.discussions');
     });
