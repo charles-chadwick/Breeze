@@ -18,13 +18,11 @@ class UserSeeder extends Seeder {
         DB::table('users')
           ->truncate();
 
-        User::create([
+        User::factory()->create([
             "role"          => UserRole::Super,
             "first_name"    => "John",
             "last_name"     => "Doe",
             "email"         => "john.doe@example.com",
-            "password"      => bcrypt('password'),
-            "created_by_id" => 1,
             "created_at"    => "2020-01-01 08:00:00",
         ]);
 
@@ -39,15 +37,17 @@ class UserSeeder extends Seeder {
                 default       => UserRole::Staff
             };
 
+            $counter += 1;
+            if ($counter == 10) { break; }
+
             // because we truncate the table every time, the user IDs will be 2-10 for any staff.
             $created_at = fake()->dateTimeBetween("2020-01-01 08:00:00", "2021-01-01 08:00:00");
 
-            $user = User::create([
+            $user = User::factory()->create([
                 "role"          => $role,
                 "first_name"    => $character[ "first_name" ],
                 "last_name"     => $character[ "last_name" ],
                 "email"         => $email,
-                "password"      => bcrypt('password'),
                 "created_at"    => $created_at,
                 "updated_at"    => $created_at,
             ]);

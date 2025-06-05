@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\UserRole;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -13,12 +14,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+         // (new UserSeeder())->run();
+         (new PatientSeeder())->run();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+
     }
 
     public static function characterList() : array {
@@ -33,7 +32,6 @@ class DatabaseSeeder extends Seeder
                 'middle_name' => $data[ 1 ] ?? '',
                 'last_name'   => $data[ 2 ] ?? '',
                 'gender'      => $data[ 3 ] ?? '',
-                'avatar'      => $data[ 4 ] ?? '',
             ];
         }, $lines);
     }
