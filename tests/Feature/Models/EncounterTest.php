@@ -29,7 +29,7 @@ it('has users', function () {
         ->each->toBeInstanceOf(User::class);
 });
 
-it('has is associated with an appointment', function () {
+it('is associated with an appointment', function () {
 
     // Arrange
     $encounter = Encounter::factory()
