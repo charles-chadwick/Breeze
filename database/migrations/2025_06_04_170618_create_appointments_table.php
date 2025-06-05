@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('description');
             $table->timestamps();
             $table->softDeletes();
+            $table->unsignedBigInteger('created_by')->default(1);
+            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->unsignedBigInteger('deleted_by')->nullable();
         });
     }
 
