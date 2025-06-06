@@ -14,8 +14,7 @@ class AppointmentFactory extends Factory
     public function definition(): array
     {
         return [
-            'patient_id' => $this->faker->word(),
-
+            'patient_id' => $this->faker->randomNumber(),
             'status' => fake()->randomElement(AppointmentStatus::cases()),
             'date_and_time' => Carbon::now(),
             'length' => $this->faker->randomNumber(),
