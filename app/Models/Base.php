@@ -18,7 +18,6 @@ class Base extends Model
 
     public function getActivitylogOptions() : LogOptions
     {
-        // TODO: Implement getActivitylogOptions() method.
         return LogOptions::defaults()
             ->useLogName('System');
     }
