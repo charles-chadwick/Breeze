@@ -50,7 +50,7 @@ it('shows only active patients', function () {
         ]);
 });
 
-it('shows a the patient details', function () {
+it('shows the patient details', function () {
 
     // Arrange
     $patient = Patient::factory()->create();
@@ -67,3 +67,4 @@ it('shows a the patient details', function () {
             $patient->first()->status,
         ]);
 });
+

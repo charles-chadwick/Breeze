@@ -9,8 +9,16 @@ class PatientsDashboardController extends Controller
     public function index()
     {
         $patients = Patient::status()->get();
+        $headers = [
+            'MRN',
+            'Name',
+            'Date of Birth',
+            'Gender',
+            'Status',
+            'Email',
+        ];
 
-        return view('patients.index', compact('patients'));
+        return view('patients.index', compact('patients', 'headers'));
     }
 
     public function details(Patient $patient)
