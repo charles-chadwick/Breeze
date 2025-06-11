@@ -33,7 +33,7 @@ class DiagnosticCodeSeeder extends Seeder
             $codes[] = [
                 'code' => $icd10['code'],
                 'description' => $icd10['description'],
-                'created_by_id' => 1,
+                'created_by' => 1,
             ];
 
             $counter++;
