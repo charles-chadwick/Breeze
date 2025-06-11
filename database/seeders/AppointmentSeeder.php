@@ -68,8 +68,8 @@ class AppointmentSeeder extends Seeder
                         'status' => fake()->randomElement(AppointmentStatus::cases()),
                         'created_at' => $created_at,
                         'updated_at' => $created_at,
-                        'created_by_id' => $user->id,
-                        'updated_by_id' => $user->id,
+                        'created_by' => $user->id,
+                        'updated_by' => $user->id,
                         'type' => fake()->randomElement([
                             'House Call',
                             'In-Office',
@@ -87,8 +87,8 @@ class AppointmentSeeder extends Seeder
                         'appointment_id' => $appointment->id,
                         'created_at' => $created_at,
                         'updated_at' => $created_at,
-                        'created_by_id' => $user->id,
-                        'updated_by_id' => $user->id,
+                        'created_by' => $user->id,
+                        'updated_by' => $user->id,
                     ]);
             }
         }

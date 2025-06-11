@@ -12,19 +12,20 @@ class UserSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run() : void
     {
 
         DB::table('users')
-            ->truncate();
+          ->truncate();
 
-        User::create([
-            'role' => UserRole::SuperAdmin,
+        User::factory()->create([
+            'role'       => UserRole::SuperAdmin,
+            'status'     => 'Active',
             'first_name' => 'John',
-            'last_name' => 'Doe',
-            'email' => 'john.doe@example.com',
-            'password' => bcrypt('password'),
-            'created_by_id' => 1,
+            'last_name'  => 'Doe',
+            'email'      => 'john.doe@example.com',
+            'password'   => bcrypt('password'),
+            'created_by' => 1,
             'created_at' => '2020-01-01 08:00:00',
         ]);
 
@@ -33,27 +34,35 @@ class UserSeeder extends Seeder
             $email = str_replace(' ', '_',
                 strtolower("{$character['first_name']}.{$character['last_name']}@example.com"));
 
+            if ($counter == 10) {
+                exit;
+            }
+
             $role = match (true) {
                 $counter <= 1 => UserRole::Doctor,
                 $counter <= 4 => UserRole::Nurse,
-                default => UserRole::Staff
+                default       => UserRole::Staff
             };
 
             // because we truncate the table every time, the user IDs will be 2-10 for any staff.
-            $created_by_id = 1;
+            $created_by = 1;
             $created_at = fake()->dateTimeBetween('2020-01-01 08:00:00', '2021-01-01 08:00:00');
 
-            $user = User::create([
-                'role' => $role,
-                'first_name' => $character['first_name'],
-                'last_name' => $character['last_name'],
-                'email' => $email,
-                'password' => bcrypt('password'),
-                'created_by_id' => $created_by_id,
-                'updated_by_id' => $created_by_id,
-                'created_at' => $created_at,
-                'updated_at' => $created_at,
-            ]);
+            User::factory()
+                ->create([
+                    'status'     => 'Active',
+                    'prefix' => UserRole::Doctor ? 'Dr' : '',
+                    'suffix' => UserRole::Doctor ? 'PhD' : '',
+                    'role'       => $role,
+                    'first_name' => $character[ 'first_name' ],
+                    'last_name'  => $character[ 'last_name' ],
+                    'email'      => $email,
+                    'password'   => bcrypt('password'),
+                    'created_by' => $created_by,
+                    'updated_by' => $created_by,
+                    'created_at' => $created_at,
+                    'updated_at' => $created_at,
+                ]);
         }
     }
 }
