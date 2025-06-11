@@ -25,13 +25,13 @@ return new class extends Migration
             $table->string('password');
             $table->string('remember_token')
                 ->nullable();
-            $table->integer('created_by');
-            $table->integer('updated_by')
-                ->nullable();
-            $table->integer('deleted_by')
-                ->nullable();
             $table->timestamps();
             $table->softDeletes();
+            $table->integer('created_by');
+            $table->integer('updated_by')
+                  ->nullable();
+            $table->integer('deleted_by')
+                  ->nullable();
         });
     }
 
