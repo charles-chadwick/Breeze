@@ -14,7 +14,8 @@
         content="{{ csrf_token() }}"
     >
     <title>{{ isset($title) ? $title.' - '.config('app.name') : config('app.name') }}</title>
-
+    <wireui:scripts />
+    <script src="//unpkg.com/alpinejs" defer></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-zinc-100">
@@ -245,7 +246,7 @@
 
     <main class="-mt-32">
         <div class="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
-            <div class="rounded-lg bg-white px-5 py-6 shadow-sm sm:px-6">
+            <div class="rounded-lg bg-white shadow-sm">
                 @yield("content")
             </div>
         </div>
