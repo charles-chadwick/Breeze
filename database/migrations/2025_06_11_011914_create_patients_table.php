@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->string('suffix')
                   ->nullable();
             $table->string('gender');
-            $table->datetime('dob');
+            $table->date('dob');
             $table->string('status');
             $table->string('email');
             $table->string('password');
