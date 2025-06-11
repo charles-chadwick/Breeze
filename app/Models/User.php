@@ -18,7 +18,7 @@ class User extends Base implements AuthenticatableContract, AuthorizableContract
 {
     use Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail;
     use HasFactory, Notifiable;
-    use IsPerson, HasStatus;
+    use HasStatus, IsPerson;
 
     /**
      * Constructors

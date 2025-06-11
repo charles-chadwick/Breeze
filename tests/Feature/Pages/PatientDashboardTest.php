@@ -2,8 +2,8 @@
 
 use App\Enums\PatientStatus;
 use App\Models\Patient;
-
 use Illuminate\Database\Eloquent\Factories\Sequence;
+
 use function Pest\Laravel\get;
 
 it('shows a list of patients', function () {
@@ -32,19 +32,18 @@ it('shows only active patients', function () {
 
     // Arrange
     $patients = Patient::factory()
-                       ->state(new Sequence(
-                           ['status' => PatientStatus::Active],
-                           ['status' => PatientStatus::Inactive],
-                       ))
-                       ->count(2)->create();
-
+        ->state(new Sequence(
+            ['status' => PatientStatus::Active],
+            ['status' => PatientStatus::Inactive],
+        ))
+        ->count(2)->create();
 
     // Act & Assert
     get(route('patients.index', ['status' => PatientStatus::Active]))
         ->assertOk()
         ->assertSeeText([
             $patients->first()->full_name,
-            $patients->first()->status
+            $patients->first()->status,
         ])->assertDontSeeText([
             $patients->last()->full_name,
             $patients->last()->status,
@@ -61,7 +60,7 @@ it('shows a the patient details', function () {
         ->assertOk()
         ->assertSeeText([
             $patient->first()->full_name,
-            "(#".$patient->first()->id.")",
+            '(#'.$patient->first()->id.')',
             $patient->first()->email,
             $patient->first()->dob,
             $patient->first()->gender,

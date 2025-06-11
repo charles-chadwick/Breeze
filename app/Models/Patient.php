@@ -20,7 +20,7 @@ class Patient extends Base implements AuthenticatableContract, AuthorizableContr
 {
     use Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail;
     use HasFactory;
-    use IsPerson, HasStatus;
+    use HasStatus, IsPerson;
 
     /**
      * Constructors
@@ -60,7 +60,7 @@ class Patient extends Base implements AuthenticatableContract, AuthorizableContr
     /**
      * Appointment relationship
      */
-    public function appointments() : HasMany
+    public function appointments(): HasMany
     {
         return $this->hasMany(Appointment::class);
     }
