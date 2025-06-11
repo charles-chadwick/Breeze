@@ -7,10 +7,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Image\Enums\Fit;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Base extends Model
+class Base extends Model implements HasMedia
 {
-    use LogsActivity, SoftDeletes;
+    use LogsActivity, SoftDeletes, InteractsWithMedia;
 
     public function __construct($attributes = [])
     {
@@ -54,5 +58,13 @@ class Base extends Model
     {
         return LogOptions::defaults()
             ->useLogName('System');
+    }
+
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this
+            ->addMediaConversion('preview')
+            ->fit(Fit::Contain, 300, 300)
+            ->nonQueued();
     }
 }
