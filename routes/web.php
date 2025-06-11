@@ -9,5 +9,5 @@ Route::get('/', function () {
 
 Route::prefix('patients')->group(function () {
     Route::get('/', [PatientsDashboardController::class, 'index'])->name('patients.index');
-
+    Route::get('/{patient}/details', [PatientsDashboardController::class, 'details'])->name('patients.details');
 });

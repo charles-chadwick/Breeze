@@ -25,3 +25,21 @@ it('shows a list of patients', function () {
             $patients->last()->status,
         ]);
 });
+
+it('shows a the patient details', function () {
+
+    // Arrange
+    $patient = Patient::factory()->create();
+
+    // Act & Assert
+    get(route('patients.details', $patient))
+        ->assertOk()
+        ->assertSeeText([
+            $patient->first()->full_name,
+            "(#".$patient->first()->id.")",
+            $patient->first()->email,
+            $patient->first()->dob,
+            $patient->first()->gender,
+            $patient->first()->status,
+        ]);
+});

@@ -12,4 +12,8 @@ class PatientsDashboardController extends Controller
 
         return view('patients.index', compact('patients'));
     }
+
+    public function details(Patient $patient) {
+        return view('patients.details', compact('patient'));
+    }
 }
