@@ -12,6 +12,9 @@ class Appointment extends Base
 {
     use HasFactory;
 
+    /**
+     * Constructors
+     */
     public function __construct($attributes = []) { parent::__construct($attributes); }
 
     /**
@@ -36,7 +39,7 @@ class Appointment extends Base
     }
 
     /**
-     * Users relationship
+     * Users' relationship
      */
     public function users() :  BelongsToMany {
         return $this->belongsToMany(User::class);
