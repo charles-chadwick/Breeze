@@ -15,7 +15,7 @@ trait IsPerson
                     return trim($value) !== '';
                 })
                 ->implode(' ');
-        }, set: function ($value) {
+        }, set: function () {
             throw new Exception('Cannot set the classes name via full_name. Use individual fields instead.');
         });
     }
