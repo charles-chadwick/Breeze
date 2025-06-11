@@ -37,26 +37,15 @@
                                 <div class="ml-10 flex items-baseline space-x-4">
                                     <!-- Current: "bg-zinc-900 text-white", Default: "text-zinc-300 hover:bg-zinc-700 hover:text-white" -->
                                     <a
-                                        href="#"
+                                        href="{{ route('dashboard') }}"
                                         class="rounded-md bg-zinc-900 px-3 py-2 text-sm font-medium text-white"
                                         aria-current="page"
                                     >Dashboard</a>
                                     <a
-                                        href="#"
+                                        href="{{ route('patients.index') }}"
                                         class="rounded-md px-3 py-2 text-sm font-medium text-zinc-300 hover:bg-zinc-700 hover:text-white"
-                                    >Team</a>
-                                    <a
-                                        href="#"
-                                        class="rounded-md px-3 py-2 text-sm font-medium text-zinc-300 hover:bg-zinc-700 hover:text-white"
-                                    >Projects</a>
-                                    <a
-                                        href="#"
-                                        class="rounded-md px-3 py-2 text-sm font-medium text-zinc-300 hover:bg-zinc-700 hover:text-white"
-                                    >Calendar</a>
-                                    <a
-                                        href="#"
-                                        class="rounded-md px-3 py-2 text-sm font-medium text-zinc-300 hover:bg-zinc-700 hover:text-white"
-                                    >Reports</a>
+                                    >Patients</a>
+
                                 </div>
                             </div>
                         </div>
@@ -163,26 +152,15 @@
                 <div class="space-y-1 px-2 py-3 sm:px-3">
                     <!-- Current: "bg-zinc-900 text-white", Default: "text-zinc-300 hover:bg-zinc-700 hover:text-white" -->
                     <a
-                        href="#"
+                        href="{{ route('dashboard') }}"
                         class="block rounded-md bg-zinc-900 px-3 py-2 text-base font-medium text-white"
                         aria-current="page"
                     >Dashboard</a>
                     <a
-                        href="#"
+                        href="{{ route('patients.index') }}"
                         class="block rounded-md px-3 py-2 text-base font-medium text-zinc-300 hover:bg-zinc-700 hover:text-white"
-                    >Team</a>
-                    <a
-                        href="#"
-                        class="block rounded-md px-3 py-2 text-base font-medium text-zinc-300 hover:bg-zinc-700 hover:text-white"
-                    >Projects</a>
-                    <a
-                        href="#"
-                        class="block rounded-md px-3 py-2 text-base font-medium text-zinc-300 hover:bg-zinc-700 hover:text-white"
-                    >Calendar</a>
-                    <a
-                        href="#"
-                        class="block rounded-md px-3 py-2 text-base font-medium text-zinc-300 hover:bg-zinc-700 hover:text-white"
-                    >Reports</a>
+                    >Patients</a>
+
                 </div>
                 <div class="border-t border-zinc-700 pt-4 pb-3">
                     <div class="flex items-center px-5">

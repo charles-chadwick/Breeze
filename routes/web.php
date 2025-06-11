@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return 'Hi';
-});
+})->name('dashboard');
 
 Route::prefix('patients')->group(function () {
     Route::get('/', [PatientsDashboardController::class, 'index'])->name('patients.index');
