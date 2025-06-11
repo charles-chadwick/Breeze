@@ -11,6 +11,7 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Support\Carbon;
 
@@ -53,5 +54,13 @@ class Patient extends Base implements AuthenticatableContract, AuthorizableContr
         return Attribute::make(
             get: fn () => Carbon::parse($this->attributes['dob'])->format('m/d/Y')
         );
+    }
+
+    /**
+     * Appointment relationship
+     */
+    public function appointments() : HasMany
+    {
+        return $this->hasMany(Appointment::class);
     }
 }
