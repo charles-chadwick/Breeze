@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Enums\AppointmentStatus;
+use App\Enums\AppointmentType;
 use App\Models\Appointment;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Carbon;
@@ -15,9 +17,9 @@ class AppointmentFactory extends Factory
         return [
             'patient_id' => fake()->randomNumber(),
             'date_and_time' => Carbon::now(),
-            'length' => fake()->randomNumber(),
-            'status' => fake()->word(),
-            'type' => fake()->word(),
+            'length' => fake()->randomElement([15, 30, 45]),
+            'status' => fake()->randomElement(AppointmentStatus::cases()),
+            'type' => fake()->randomElement(AppointmentType::cases()),
             'title' => fake()->word(),
             'description' => fake()->text(),
             'created_by' => fake()->randomNumber(),
