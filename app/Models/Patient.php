@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Traits\Attributes\IsPerson;
+use App\Models\Traits\Scopes\HasStatus;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -19,7 +20,7 @@ class Patient extends Base implements AuthenticatableContract, AuthorizableContr
 {
     use Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail;
     use HasFactory;
-    use IsPerson;
+    use IsPerson, HasStatus;
 
     /**
      * Constructors

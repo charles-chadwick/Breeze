@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Traits\Attributes\IsPerson;
+use App\Models\Traits\Scopes\HasStatus;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -17,7 +18,7 @@ class User extends Base implements AuthenticatableContract, AuthorizableContract
 {
     use Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail;
     use HasFactory, Notifiable;
-    use IsPerson;
+    use IsPerson, HasStatus;
 
     /**
      * Constructors

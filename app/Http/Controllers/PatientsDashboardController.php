@@ -8,7 +8,7 @@ class PatientsDashboardController extends Controller
 {
     public function index()
     {
-        $patients = Patient::all();
+        $patients = Patient::status()->get();
 
         return view('patients.index', compact('patients'));
     }
