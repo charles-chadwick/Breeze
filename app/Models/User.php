@@ -20,10 +20,10 @@ class User extends Base implements
     use Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail;
     use HasFactory, Notifiable;
 
+    public function __construct($attributes = []) { parent::__construct($attributes); }
+
     /**
      * The attributes that are mass assignable.
-     *
-     * @var list<string>
      */
     protected $fillable = [
         'prefix',
@@ -40,7 +40,6 @@ class User extends Base implements
 
     /**
      * The attributes that should be hidden for serialization.
-     *
      */
     protected $hidden = [
         'password',
@@ -49,7 +48,6 @@ class User extends Base implements
 
     /**
      * Get the attributes that should be cast.
-     *
      */
     protected function casts(): array
     {

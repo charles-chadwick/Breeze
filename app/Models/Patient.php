@@ -9,7 +9,6 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 
 class Patient extends Base implements
@@ -17,9 +16,14 @@ class Patient extends Base implements
     AuthorizableContract,
     CanResetPasswordContract
 {
+    use HasFactory;
     use Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail;
-    use HasFactory, SoftDeletes;
 
+    public function __construct($attributes = []) { parent::__construct($attributes); }
+
+    /**
+     * Fillable
+     */
     protected $fillable = [
         'prefix',
         'first_name',
