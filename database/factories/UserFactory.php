@@ -2,12 +2,16 @@
 
 namespace Database\Factories;
 
+use App\Enums\UserRole;
+use App\Enums\UserStatus;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
+ * @extends Factory<User>
  */
 class UserFactory extends Factory
 {
@@ -24,11 +28,21 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
+            'prefix'         => fake()->word(),
+            'first_name'     => fake()->firstName(),
+            'last_name'      => fake()->lastName(),
+            'suffix'         => fake()->word(),
+            'role'           => fake()->randomElement(UserRole::cases()),
+            'status'         => fake()->randomElement(UserStatus::cases()),
+            'email'          => fake()->unique()
+                                            ->safeEmail(),
+            'password'       => bcrypt(fake()->password()),
             'remember_token' => Str::random(10),
+            'created_by'     => fake()->randomNumber(),
+            'updated_by'     => fake()->randomNumber(),
+            'deleted_by'     => fake()->randomNumber(),
+            'created_at'     => Carbon::now(),
+            'updated_at'     => Carbon::now(),
         ];
     }
 

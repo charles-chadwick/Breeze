@@ -13,17 +13,17 @@ class AppointmentFactory extends Factory
     public function definition() : array
     {
         return [
-            'patient_id'    => $this->faker->randomNumber(),
+            'patient_id'    => fake()->randomNumber(),
 
             'date_and_time' => Carbon::now(),
-            'length'        => $this->faker->randomNumber(),
-            'status'        => $this->faker->word(),
-            'type'          => $this->faker->word(),
-            'title'         => $this->faker->word(),
-            'description'   => $this->faker->text(),
-            'created_by'    => $this->faker->randomNumber(),
-            'updated_by'    => $this->faker->randomNumber(),
-            'deleted_by'    => $this->faker->randomNumber(),
+            'length'        => fake()->randomNumber(),
+            'status'        => fake()->word(),
+            'type'          => fake()->word(),
+            'title'         => fake()->word(),
+            'description'   => fake()->text(),
+            'created_by'    => fake()->randomNumber(),
+            'updated_by'    => fake()->randomNumber(),
+            'deleted_by'    => fake()->randomNumber(),
             'created_at'    => Carbon::now(),
             'updated_at'    => Carbon::now(),
         ];

@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Enums\Gender;
+use App\Enums\PatientStatus;
 use App\Models\Patient;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Carbon;
@@ -14,22 +16,22 @@ class PatientFactory extends Factory
     public function definition() : array
     {
         return [
-            'prefix'         => $this->faker->word(),
+            'prefix'         => fake()->word(),
 
-            'first_name'     => $this->faker->firstName(),
-            'middle_name'    => $this->faker->name(),
-            'last_name'      => $this->faker->lastName(),
-            'suffix'         => $this->faker->word(),
-            'gender'         => $this->faker->word(),
+            'first_name'     => fake()->firstName(),
+            'middle_name'    => fake()->firstName(),
+            'last_name'      => fake()->lastName(),
+            'suffix'         => fake()->word(),
+            'gender'         => fake()->randomElement(Gender::cases()),
             'dob'            => Carbon::now(),
-            'status'         => $this->faker->word(),
-            'email'          => $this->faker->unique()
+            'status'         => fake()->randomElement(PatientStatus::cases()),
+            'email'          => fake()->unique()
                                             ->safeEmail(),
-            'password'       => bcrypt($this->faker->password()),
+            'password'       => bcrypt(fake()->password()),
             'remember_token' => Str::random(10),
-            'created_by'     => $this->faker->randomNumber(),
-            'updated_by'     => $this->faker->randomNumber(),
-            'deleted_by'     => $this->faker->randomNumber(),
+            'created_by'     => fake()->randomNumber(),
+            'updated_by'     => 0,
+            'deleted_by'     => 0,
             'created_at'     => Carbon::now(),
             'updated_at'     => Carbon::now(),
         ];
