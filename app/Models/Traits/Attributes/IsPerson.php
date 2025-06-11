@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Traits;
+namespace App\Models\Traits\Attributes;
 
 use Exception;
 use Illuminate\Database\Eloquent\Casts\Attribute;
