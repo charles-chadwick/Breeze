@@ -13,10 +13,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Base implements
-    AuthenticatableContract,
-    AuthorizableContract,
-    CanResetPasswordContract
+class User extends Base implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
     use Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail;
     use HasFactory, Notifiable;
@@ -25,7 +22,10 @@ class User extends Base implements
     /**
      * Constructors
      */
-    public function __construct($attributes = []) { parent::__construct($attributes); }
+    public function __construct($attributes = [])
+    {
+        parent::__construct($attributes);
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -40,7 +40,7 @@ class User extends Base implements
         'status',
         'email',
         'password',
-        'remember_token'
+        'remember_token',
     ];
 
     /**

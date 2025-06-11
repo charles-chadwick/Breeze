@@ -2,9 +2,10 @@
 
 namespace App\Enums;
 
-enum PatientStatus: string {
+enum PatientStatus: string
+{
     case Active = 'Active';
     case Inactive = 'Inactive';
     case Prospective = 'Prospective';
-    case Archived    = 'Archived';
+    case Archived = 'Archived';
 }

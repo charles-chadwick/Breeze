@@ -7,7 +7,6 @@ use App\Enums\UserStatus;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 /**
@@ -28,21 +27,21 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'prefix'         => fake()->word(),
-            'first_name'     => fake()->firstName(),
-            'last_name'      => fake()->lastName(),
-            'suffix'         => fake()->word(),
-            'role'           => fake()->randomElement(UserRole::cases()),
-            'status'         => fake()->randomElement(UserStatus::cases()),
-            'email'          => fake()->unique()
-                                            ->safeEmail(),
-            'password'       => bcrypt(fake()->password()),
+            'prefix' => fake()->word(),
+            'first_name' => fake()->firstName(),
+            'last_name' => fake()->lastName(),
+            'suffix' => fake()->word(),
+            'role' => fake()->randomElement(UserRole::cases()),
+            'status' => fake()->randomElement(UserStatus::cases()),
+            'email' => fake()->unique()
+                ->safeEmail(),
+            'password' => bcrypt(fake()->password()),
             'remember_token' => Str::random(10),
-            'created_by'     => fake()->randomNumber(),
-            'updated_by'     => fake()->randomNumber(),
-            'deleted_by'     => fake()->randomNumber(),
-            'created_at'     => Carbon::now(),
-            'updated_at'     => Carbon::now(),
+            'created_by' => fake()->randomNumber(),
+            'updated_by' => fake()->randomNumber(),
+            'deleted_by' => fake()->randomNumber(),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
         ];
     }
 

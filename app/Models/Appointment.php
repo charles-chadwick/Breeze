@@ -3,10 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Appointment extends Base
 {
@@ -15,7 +13,10 @@ class Appointment extends Base
     /**
      * Constructors
      */
-    public function __construct($attributes = []) { parent::__construct($attributes); }
+    public function __construct($attributes = [])
+    {
+        parent::__construct($attributes);
+    }
 
     /**
      * Fillable
@@ -27,13 +28,13 @@ class Appointment extends Base
         'status',
         'type',
         'title',
-        'description'
+        'description',
     ];
 
     /**
      * Patient relationship
      */
-    public function patient() : BelongsTo
+    public function patient(): BelongsTo
     {
         return $this->belongsTo(Patient::class);
     }
@@ -41,7 +42,8 @@ class Appointment extends Base
     /**
      * Users' relationship
      */
-    public function users() :  BelongsToMany {
+    public function users(): BelongsToMany
+    {
         return $this->belongsToMany(User::class);
     }
 }

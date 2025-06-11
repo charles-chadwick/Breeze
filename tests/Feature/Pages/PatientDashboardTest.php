@@ -1,7 +1,7 @@
 <?php
 
-use App\Enums\PatientStatus;
 use App\Models\Patient;
+
 use function Pest\Laravel\get;
 
 it('shows a list of patients', function () {
@@ -22,6 +22,6 @@ it('shows a list of patients', function () {
             $patients->last()->email,
             $patients->last()->dob,
             $patients->last()->gender,
-            $patients->last()->status
+            $patients->last()->status,
         ]);
 });

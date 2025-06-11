@@ -10,22 +10,21 @@ class AppointmentFactory extends Factory
 {
     protected $model = Appointment::class;
 
-    public function definition() : array
+    public function definition(): array
     {
         return [
-            'patient_id'    => fake()->randomNumber(),
-
+            'patient_id' => fake()->randomNumber(),
             'date_and_time' => Carbon::now(),
-            'length'        => fake()->randomNumber(),
-            'status'        => fake()->word(),
-            'type'          => fake()->word(),
-            'title'         => fake()->word(),
-            'description'   => fake()->text(),
-            'created_by'    => fake()->randomNumber(),
-            'updated_by'    => fake()->randomNumber(),
-            'deleted_by'    => fake()->randomNumber(),
-            'created_at'    => Carbon::now(),
-            'updated_at'    => Carbon::now(),
+            'length' => fake()->randomNumber(),
+            'status' => fake()->word(),
+            'type' => fake()->word(),
+            'title' => fake()->word(),
+            'description' => fake()->text(),
+            'created_by' => fake()->randomNumber(),
+            'updated_by' => fake()->randomNumber(),
+            'deleted_by' => fake()->randomNumber(),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
         ];
     }
 }

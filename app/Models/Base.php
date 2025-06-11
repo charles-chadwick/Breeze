@@ -26,7 +26,7 @@ class Base extends Model
     /**
      * Created by user
      */
-    public function createdBy() : BelongsTo
+    public function createdBy(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');
     }
@@ -34,7 +34,7 @@ class Base extends Model
     /**
      * Updated by user
      */
-    public function updatedBy() : BelongsTo
+    public function updatedBy(): BelongsTo
     {
         return $this->belongsTo(User::class, 'updated_by');
     }
@@ -42,7 +42,7 @@ class Base extends Model
     /**
      * Deleted by user
      */
-    public function deletedBy() : BelongsTo
+    public function deletedBy(): BelongsTo
     {
         return $this->belongsTo(User::class, 'deleted_by');
     }
@@ -50,9 +50,9 @@ class Base extends Model
     /**
      * Activity Log
      */
-    public function getActivitylogOptions() : LogOptions
+    public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-            ->useLogName("System");
+            ->useLogName('System');
     }
 }

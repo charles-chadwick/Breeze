@@ -14,19 +14,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Support\Carbon;
 
-class Patient extends Base implements
-    AuthenticatableContract,
-    AuthorizableContract,
-    CanResetPasswordContract
+class Patient extends Base implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
-    use HasFactory;
     use Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail;
+    use HasFactory;
     use IsPerson;
 
     /**
      * Constructors
      */
-    public function __construct($attributes = []) { parent::__construct($attributes); }
+    public function __construct($attributes = [])
+    {
+        parent::__construct($attributes);
+    }
 
     /**
      * Fillable
@@ -42,13 +42,14 @@ class Patient extends Base implements
         'status',
         'email',
         'password',
-        'remember_token'
+        'remember_token',
     ];
 
     /**
      * Date of Birth attribute
      */
-    public function dob() : Attribute {
+    public function dob(): Attribute
+    {
         return Attribute::make(
             get: fn () => Carbon::parse($this->attributes['dob'])->format('m/d/Y')
         );
