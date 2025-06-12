@@ -12,11 +12,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        //       (new UserSeeder)->run();
-        //        (new PatientSeeder)->run();
-        //        (new DiagnosticCodeSeeder)->run();
+   //   (new UserSeeder)->run();
+      (new PatientSeeder)->run();
+//        (new DiagnosticCodeSeeder)->run();
         (new AppointmentSeeder)->run();
-        //        (new AvatarSeeder)->run();
+       (new AvatarSeeder)->run();
     }
 
     public static function characterList(): array

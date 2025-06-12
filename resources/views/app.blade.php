@@ -44,7 +44,10 @@
                                     <a
                                         href="{{ route('patients.index') }}"
                                         class="rounded-md px-3 py-2 text-sm font-medium text-zinc-300 hover:bg-zinc-700 hover:text-white"
-                                    >Patients</a>
+                                    >Patients</a>                      <a
+                                        href="{{ route('appointments.index') }}"
+                                        class="rounded-md px-3 py-2 text-sm font-medium text-zinc-300 hover:bg-zinc-700 hover:text-white"
+                                    >Appointments</a>
 
                                 </div>
                             </div>
@@ -160,6 +163,10 @@
                         href="{{ route('patients.index') }}"
                         class="block rounded-md px-3 py-2 text-base font-medium text-zinc-300 hover:bg-zinc-700 hover:text-white"
                     >Patients</a>
+                    <a
+                        href="{{ route('appointments.index') }}"
+                        class="block rounded-md px-3 py-2 text-base font-medium text-zinc-300 hover:bg-zinc-700 hover:text-white"
+                    >Appointments</a>
 
                 </div>
                 <div class="border-t border-zinc-700 pt-4 pb-3">
@@ -217,7 +224,7 @@
         </nav>
         <header class="py-10">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <h1 class="text-3xl font-bold tracking-tight text-white">Dashboard</h1>
+                <h1 class="text-3xl font-bold tracking-tight text-white">@yield("page_header")</h1>
             </div>
         </header>
     </div>

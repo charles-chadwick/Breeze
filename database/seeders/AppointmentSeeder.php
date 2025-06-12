@@ -77,7 +77,7 @@ class AppointmentSeeder extends Seeder
                         ]),
                         'title' => Str::of($title)
                             ->title()
-                            ->limit(25),
+                            ->limit(50),
                         'description' => $description,
                     ]);
 
