@@ -23,7 +23,7 @@ class PatientsDashboardController extends Controller
 
     public function details(Patient $patient)
     {
-        return view('patients.details', compact('patient'));
+        return view('patients.chart', compact('patient'));
     }
 
     public function medications(Patient $patient) {

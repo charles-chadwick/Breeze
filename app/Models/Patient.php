@@ -51,6 +51,16 @@ class Patient extends Base implements AuthenticatableContract, AuthorizableContr
     /**
      * Date of Birth attribute
      */
+    public function age(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => Carbon::parse($this->attributes['dob'])->age
+        );
+    }
+
+    /**
+     * Date of Birth attribute
+     */
     public function dob(): Attribute
     {
         return Attribute::make(
