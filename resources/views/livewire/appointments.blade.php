@@ -1,6 +1,6 @@
 @props([
     "appointments",
-    "show_patient" => true
+    "show_patient" => false
 ])
 <div>
     @foreach($appointments as $appointment)

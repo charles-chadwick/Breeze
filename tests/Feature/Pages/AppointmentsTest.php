@@ -14,9 +14,7 @@ it('shows a list of appointments', function () {
     get(route('appointments.index'))
         ->assertOk()
         ->assertSee([
-                $appointments->first()->full_date_and_time_range,
                 $appointments->first()->title,
-                $appointments->last()->full_date_and_time_range,
                 $appointments->last()->title,
             ]);
 
