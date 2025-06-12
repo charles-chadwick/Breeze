@@ -9,9 +9,10 @@ class AppointmentsController extends Controller
 {
     public function index()
     {
+
         return view('appointments.index', [
-            'appointments' => Appointment::status()
-                                         ->get(),
+            'appointments'               => Appointment::status()
+                                                       ->get(),
         ]);
     }
 }

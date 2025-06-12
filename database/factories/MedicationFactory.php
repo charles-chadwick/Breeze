@@ -7,7 +7,7 @@ use App\Models\Medication;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Carbon;
 
-class MedicationsFactory extends Factory
+class MedicationFactory extends Factory
 {
     protected $model = Medication::class;
 
