@@ -22,7 +22,7 @@ class Appointment extends Base
         parent::__construct($attributes);
     }
 
-    protected function casts() : array
+    protected function casts(): array
     {
         return [
             'date' => 'datetime:Y-m-d',
@@ -45,7 +45,7 @@ class Appointment extends Base
     /**
      * Patient relationship
      */
-    public function patient() : BelongsTo
+    public function patient(): BelongsTo
     {
         return $this->belongsTo(Patient::class);
     }
@@ -53,45 +53,45 @@ class Appointment extends Base
     /**
      * Users' relationship
      */
-    public function users() : BelongsToMany
+    public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'appointments_users', 'appointment_id', 'user_id')
-                    ->withTimestamps();
+            ->withTimestamps();
     }
 
     /**
      * Get the formatted date
      */
-    public function date() : Attribute
+    public function date(): Attribute
     {
-        return Attribute::make(get: fn() => Carbon::parse($this->attributes[ 'date_and_time' ])
-                                                  ->format('m/d/Y'));
+        return Attribute::make(get: fn () => Carbon::parse($this->attributes['date_and_time'])
+            ->format('m/d/Y'));
     }
 
     /**
      * Get the formatted start time
      */
-    public function startTime() : Attribute
+    public function startTime(): Attribute
     {
-        return Attribute::make(get: fn() => Carbon::parse($this->attributes[ 'date_and_time' ])
-                                                  ->format('h:i A'));
+        return Attribute::make(get: fn () => Carbon::parse($this->attributes['date_and_time'])
+            ->format('h:i A'));
     }
 
     /**
      * Get the formatted end time
      */
-    public function endTime() : Attribute
+    public function endTime(): Attribute
     {
-        return Attribute::make(get: fn() => Carbon::parse($this->attributes[ 'date_and_time' ])
-                                                  ->addMinutes((int) $this->attributes[ 'length' ])
-                                                  ->format('h:i A'));
+        return Attribute::make(get: fn () => Carbon::parse($this->attributes['date_and_time'])
+            ->addMinutes((int) $this->attributes['length'])
+            ->format('h:i A'));
     }
 
     /**
      * Get the full date time range
      */
-    public function fullDateAndTimeRange() : Attribute
+    public function fullDateAndTimeRange(): Attribute
     {
-        return Attribute::make(get: fn() => "{$this->date} from {$this->start_time} to {$this->end_time}");
+        return Attribute::make(get: fn () => "{$this->date} from {$this->start_time} to {$this->end_time}");
     }
 }

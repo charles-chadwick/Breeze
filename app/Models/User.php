@@ -67,7 +67,7 @@ class User extends Base implements AuthenticatableContract, AuthorizableContract
     /**
      * The prescription relationship
      */
-    public function prescriptions() : HasMany
+    public function prescriptions(): HasMany
     {
         return $this->hasMany(Prescription::class);
     }

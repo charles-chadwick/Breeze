@@ -29,9 +29,9 @@ return new class extends Migration
             $table->softDeletes();
             $table->integer('created_by');
             $table->integer('updated_by')
-                  ->nullable();
+                ->nullable();
             $table->integer('deleted_by')
-                  ->nullable();
+                ->nullable();
         });
     }
 

@@ -9,6 +9,7 @@ class MedicationsController extends Controller
     public function index()
     {
         $medications = Medication::get();
+
         return view('medications.index', compact('medications'));
     }
 }

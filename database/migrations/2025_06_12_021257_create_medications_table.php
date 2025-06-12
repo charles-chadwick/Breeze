@@ -10,14 +10,17 @@ return new class extends Migration {
         Schema::create('medications', function (Blueprint $table) {
             $table->id();
             $table->string('generic_name');
-            $table->string('brand_name')->nullable();
+            $table->string('brand_name')
+                  ->nullable();
             $table->string('manufacturer')
                   ->nullable();
             $table->string('strength');
             $table->string('dose_form');
+            $table->string('schedule');
             $table->string('ndc')
                   ->nullable();
-            $table->text('description')->nullable();
+            $table->text('description')
+                  ->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->integer('created_by');

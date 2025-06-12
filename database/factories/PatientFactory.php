@@ -13,27 +13,27 @@ class PatientFactory extends Factory
 {
     protected $model = Patient::class;
 
-    public function definition() : array
+    public function definition(): array
     {
         return [
-            'prefix'         => fake()->word(),
-            'first_name'     => fake()->firstName(),
-            'middle_name'    => fake()->firstName(),
-            'last_name'      => fake()->lastName(),
-            'suffix'         => fake()->word(),
-            'gender'         => fake()->randomElement(Gender::cases()),
-            'dob'            => Carbon::now(),
-            'status'         => fake()->randomElement(PatientStatus::cases()),
-            'email'          => fake()
+            'prefix' => fake()->word(),
+            'first_name' => fake()->firstName(),
+            'middle_name' => fake()->firstName(),
+            'last_name' => fake()->lastName(),
+            'suffix' => fake()->word(),
+            'gender' => fake()->randomElement(Gender::cases()),
+            'dob' => Carbon::now(),
+            'status' => fake()->randomElement(PatientStatus::cases()),
+            'email' => fake()
                 ->unique()
                 ->safeEmail(),
-            'password'       => bcrypt(fake()->password()),
+            'password' => bcrypt(fake()->password()),
             'remember_token' => Str::random(10),
-            'created_by'     => fake()->randomNumber(),
-            'updated_by'     => 0,
-            'deleted_by'     => 0,
-            'created_at'     => Carbon::now(),
-            'updated_at'     => Carbon::now(),
+            'created_by' => fake()->randomNumber(),
+            'updated_by' => 0,
+            'deleted_by' => 0,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
         ];
     }
 }

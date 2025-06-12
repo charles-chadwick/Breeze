@@ -2,8 +2,8 @@
 
 namespace App\Enums;
 
-enum NoteType : string
+enum NoteType: string
 {
-    case Admin = "Admin";
-    case NeedToKnow = "Need To Know";
+    case Admin = 'Admin';
+    case NeedToKnow = 'Need To Know';
 }

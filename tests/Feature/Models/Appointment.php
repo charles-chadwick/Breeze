@@ -13,7 +13,7 @@ it('has a properly formatted date and time range', function () {
 
     // Act & Assert
     expect($appointment->full_date_and_time_range)
-        ->toEqual("01/01/2000 from 10:00 AM to 10:15 AM");
+        ->toEqual('01/01/2000 from 10:00 AM to 10:15 AM');
 
 });
 

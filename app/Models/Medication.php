@@ -2,16 +2,19 @@
 
 namespace App\Models;
 
+use App\Enums\DoseForm;
+use App\Enums\DrugSchedule;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Medication extends Base
 {
     use HasFactory;
 
-    public function __construct(array $attributes = []) { parent::__construct($attributes); }
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+    }
 
     protected $fillable = [
         'brand_name',
@@ -20,7 +23,16 @@ class Medication extends Base
         'strength',
         'dose_form',
         'ndc',
+        'schedule'
     ];
+
+    public function casts() : array
+    {
+        return [
+            'schedule'  => DrugSchedule::class,
+            'dose_form' => DoseForm::class
+        ];
+    }
 
     /**
      * Prescription relationship

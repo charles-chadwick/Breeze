@@ -3,15 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Note extends Base
 {
     use HasFactory;
 
-    public function __construct(array $attributes = []) { parent::__construct($attributes); }
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+    }
 
     protected $fillable = [
         'on',
@@ -21,8 +22,8 @@ class Note extends Base
         'content',
     ];
 
-    public function noteable() : MorphTo
+    public function noteable(): MorphTo
     {
-        return $this->morphTo("noteable", "on", "on_id");
+        return $this->morphTo('noteable', 'on', 'on_id');
     }
 }

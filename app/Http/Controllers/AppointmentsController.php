@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\AppointmentStatus;
 use App\Models\Appointment;
 
 class AppointmentsController extends Controller
@@ -11,8 +10,8 @@ class AppointmentsController extends Controller
     {
 
         return view('appointments.index', [
-            'appointments'               => Appointment::status()
-                                                       ->get(),
+            'appointments' => Appointment::status()
+                ->get(),
         ]);
     }
 }

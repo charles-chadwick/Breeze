@@ -1,15 +1,22 @@
 @extends("app")
 @section("page_header", "Patients")
 @section("content")
-    <x-card title="Demographics">
+    <div title="Demographics">
         <x-patients.details :patient="$patient" />
-    </x-card>
+    </div>
     <div class="grid grid-cols-2">
-    <x-card title="Appointments" class="grid-col-1">
-        <livewire:appointments :appointments="$patient->appointments" :show-patient="false" />
-    </x-card>
-        <x-card title="Medications">
+        <div
 
-        </x-card>
+            class="grid-col-1"
+        >
+            <h3>Appointments</h3>
+            <livewire:appointments
+                :appointments="$patient->appointments"
+                :show-patient="false"
+            />
+        </div>
+        <div title="Medications" class="grid-col-1">
+            <h3>Medications</h3>
+        </div>
     </div>
 @endsection

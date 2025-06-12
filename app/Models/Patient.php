@@ -20,8 +20,8 @@ use Illuminate\Support\Carbon;
 class Patient extends Base implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
     use Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail;
+    use HasAvatar, HasStatus, IsPerson;
     use HasFactory;
-    use HasStatus, HasAvatar, IsPerson;
 
     /**
      * Constructors
@@ -68,10 +68,9 @@ class Patient extends Base implements AuthenticatableContract, AuthorizableContr
 
     /**
      * Prescription relationship
-     *
      */
-    public function prescriptions(): HasMany {
+    public function prescriptions(): HasMany
+    {
         return $this->hasMany(Prescription::class);
     }
-
 }

@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Carbon;
 
 class Prescription extends Base
 {
@@ -20,26 +21,32 @@ class Prescription extends Base
         'quantity',
         'refills',
         'prescribed_at',
-        'instructions'
+        'instructions',
     ];
 
-    public function patient() : BelongsTo
+    public function prescribedAt(): Attribute {
+        return Attribute::make(
+            get: fn ($value) => Carbon::parse($value)->format('m/d/Y h:i a'),
+        );
+    }
+
+    public function patient(): BelongsTo
     {
         return $this->belongsTo(Patient::class);
     }
 
-    public function prescriber() : BelongsTo
+    public function prescriber(): BelongsTo
     {
-        return $this->belongsTo(User::class,  'prescriber_id');
+        return $this->belongsTo(User::class, 'prescriber_id');
     }
 
-    public function medication() : BelongsTo
+    public function medication(): BelongsTo
     {
         return $this->belongsTo(Medication::class);
     }
-//
-//    public function fills()
-//    {
-//        return $this->hasMany(PrescriptionFill::class);
-//    }
+    //
+    //    public function fills()
+    //    {
+    //        return $this->hasMany(PrescriptionFill::class);
+    //    }
 }
