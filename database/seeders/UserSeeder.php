@@ -35,7 +35,7 @@ class UserSeeder extends Seeder
                 strtolower("{$character['first_name']}.{$character['last_name']}@example.com"));
 
             if ($counter++ >= 9) {
-                exit;
+                break;
             }
 
             $role = match (true) {
