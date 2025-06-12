@@ -1,4 +1,4 @@
-<div class="bg-white shadow-sm p-4 mb-4">
+<div>
     <div class="flex">
         <div class="shrink-0">
             <a href="{{ route('patients.details', $patient) }}" title="Go to patient chart">
