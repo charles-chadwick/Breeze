@@ -23,21 +23,21 @@ class Medication extends Base
         'strength',
         'dose_form',
         'ndc',
-        'schedule'
+        'schedule',
     ];
 
-    public function casts() : array
+    public function casts(): array
     {
         return [
-            'schedule'  => DrugSchedule::class,
-            'dose_form' => DoseForm::class
+            'schedule' => DrugSchedule::class,
+            'dose_form' => DoseForm::class,
         ];
     }
 
     /**
      * Prescription relationship
      */
-    public function prescriptions() : HasMany
+    public function prescriptions(): HasMany
     {
         return $this->hasMany(Prescription::class);
     }

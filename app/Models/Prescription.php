@@ -24,7 +24,8 @@ class Prescription extends Base
         'instructions',
     ];
 
-    public function prescribedAt(): Attribute {
+    public function prescribedAt(): Attribute
+    {
         return Attribute::make(
             get: fn ($value) => Carbon::parse($value)->format('m/d/Y h:i a'),
         );

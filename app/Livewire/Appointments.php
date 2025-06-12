@@ -8,7 +8,8 @@ use Livewire\Component;
 class Appointments extends Component
 {
     public $appointments = [];
-    public function render() : View
+
+    public function render(): View
     {
         return view('livewire.appointments');
     }
