@@ -65,4 +65,13 @@ class Patient extends Base implements AuthenticatableContract, AuthorizableContr
     {
         return $this->hasMany(Appointment::class);
     }
+
+    /**
+     * Prescription relationship
+     *
+     */
+    public function prescriptions(): HasMany {
+        return $this->hasMany(Prescription::class);
+    }
+
 }
