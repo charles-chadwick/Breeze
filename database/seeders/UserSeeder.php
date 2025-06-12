@@ -34,7 +34,7 @@ class UserSeeder extends Seeder
             $email = str_replace(' ', '_',
                 strtolower("{$character['first_name']}.{$character['last_name']}@example.com"));
 
-            if ($counter++ > 9) {
+            if ($counter++ >= 9) {
                 exit;
             }
 

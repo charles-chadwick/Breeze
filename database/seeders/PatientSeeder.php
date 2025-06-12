@@ -23,7 +23,7 @@ class PatientSeeder extends Seeder
         foreach (DatabaseSeeder::characterList() as $character) {
 
             $counter++;
-            if ($counter < 9) {
+            if ($counter < 10) {
                 continue;
             }
             // because we truncate the table every time, the user IDs will be 2-10 for any staff.
