@@ -34,7 +34,7 @@ class UserSeeder extends Seeder
             $email = str_replace(' ', '_',
                 strtolower("{$character['first_name']}.{$character['last_name']}@example.com"));
 
-            if ($counter == 10) {
+            if ($counter++ > 9) {
                 exit;
             }
 
@@ -51,8 +51,8 @@ class UserSeeder extends Seeder
             User::factory()
                 ->create([
                     'status' => 'Active',
-                    'prefix' => UserRole::Doctor ? 'Dr' : '',
-                    'suffix' => UserRole::Doctor ? 'PhD' : '',
+                    'prefix' => $role == UserRole::Doctor ? 'Dr' : '',
+                    'suffix' => $role == UserRole::Doctor ? 'PhD' : '',
                     'role' => $role,
                     'first_name' => $character['first_name'],
                     'last_name' => $character['last_name'],

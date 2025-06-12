@@ -47,8 +47,7 @@ class Appointment extends Base
      */
     public function patient() : BelongsTo
     {
-        return $this->belongsTo(Patient::class)
-                    ->withTimestamps();
+        return $this->belongsTo(Patient::class);
     }
 
     /**

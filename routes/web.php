@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AppointmentsController;
 use App\Http\Controllers\PatientsDashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -10,4 +11,8 @@ Route::get('/', function () {
 Route::prefix('patients')->group(function () {
     Route::get('/', [PatientsDashboardController::class, 'index'])->name('patients.index');
     Route::get('/{patient}/details', [PatientsDashboardController::class, 'details'])->name('patients.details');
+});
+
+Route::prefix('appointments')->group(function () {
+    Route::get('/', [AppointmentsController::class, 'index'])->name('appointments.index');
 });

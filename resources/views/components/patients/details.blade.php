@@ -1,6 +1,11 @@
 <div class="flex">
+    <div class="shrink-0">
+        <x-avatar xl rounded="md" src="{{ $patient->avatar }}" class="mx-2 my-1" />
+    </div>
     <div class="w-full">
-        <h1 class="font-bold w-full">{{ $patient->full_name }} (#{{ $patient->id }})</h1>
+        <a href="{{ route('patients.details', $patient) }}">
+        <h1 class="font-bold">{{ $patient->full_name }} (#{{ $patient->id }})</h1>
+        </a>
         <div class="text-sm">
             <p>{{ $patient->dob }}</p>
             <p>{{ $patient->gender }}</p>
@@ -11,7 +16,7 @@
     <div class="flex-0 text-right">
         <x-badge
             icon="inbox-stack"
-            positive
+            flat lime
             label="{{ $patient->status }}"
         />
         <x-dropdown position="bottom-end">

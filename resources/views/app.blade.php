@@ -27,11 +27,7 @@
                     <div class="flex h-16 items-center justify-between px-4 sm:px-0">
                         <div class="flex items-center">
                             <div class="shrink-0">
-                                <img
-                                    class="size-8"
-                                    src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
-                                    alt="Your Company"
-                                >
+                               <h1 class="text-white font-bold">Breeze</h1>
                             </div>
                             <div class="hidden md:block">
                                 <div class="ml-10 flex items-baseline space-x-4">
@@ -44,7 +40,10 @@
                                     <a
                                         href="{{ route('patients.index') }}"
                                         class="rounded-md px-3 py-2 text-sm font-medium text-zinc-300 hover:bg-zinc-700 hover:text-white"
-                                    >Patients</a>
+                                    >Patients</a>                      <a
+                                        href="{{ route('appointments.index') }}"
+                                        class="rounded-md px-3 py-2 text-sm font-medium text-zinc-300 hover:bg-zinc-700 hover:text-white"
+                                    >Appointments</a>
 
                                 </div>
                             </div>
@@ -160,6 +159,10 @@
                         href="{{ route('patients.index') }}"
                         class="block rounded-md px-3 py-2 text-base font-medium text-zinc-300 hover:bg-zinc-700 hover:text-white"
                     >Patients</a>
+                    <a
+                        href="{{ route('appointments.index') }}"
+                        class="block rounded-md px-3 py-2 text-base font-medium text-zinc-300 hover:bg-zinc-700 hover:text-white"
+                    >Appointments</a>
 
                 </div>
                 <div class="border-t border-zinc-700 pt-4 pb-3">
@@ -217,14 +220,14 @@
         </nav>
         <header class="py-10">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <h1 class="text-3xl font-bold tracking-tight text-white">Dashboard</h1>
+                <h1 class="text-3xl font-bold tracking-tight text-white">@yield("page_header")</h1>
             </div>
         </header>
     </div>
 
     <main class="-mt-32">
         <div class="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
-            <div class="rounded-lg bg-white shadow-sm">
+            <div class="rounded-lg bg-white shadow-sm text-zinc-800">
                 @yield("content")
             </div>
         </div>
