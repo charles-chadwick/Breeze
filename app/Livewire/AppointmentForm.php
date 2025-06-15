@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Enums\UserRole;
 use App\Models\Appointment;
 use App\Models\User;
+use Flux\Flux;
 use Illuminate\Support\Carbon;
 use Illuminate\View\View;
 use Livewire\Component;
@@ -57,7 +58,9 @@ class AppointmentForm extends Component
             $message = 'Appointment has been updated';
         }
 
+        Flux::modals()->close();
         session()->flash('message', $message);
+
     }
 
     protected function rules() : array

@@ -72,6 +72,11 @@
             variant="primary"
         >Save
         </flux:button>
+        <flux:button
+            wire:click="save"
+            variant="primary"
+        >Save
+        </flux:button>
     </div>
 
 </form>
