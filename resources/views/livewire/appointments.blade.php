@@ -6,15 +6,25 @@
     class="divide-y divide-gray-100"
 >
     @foreach($appointments as $appointment)
-        <li class="flex justify-between gap-x-6 py-5">
+        <li
+            class="flex justify-between gap-x-6 py-5"
+            wire:key="{{ $appointment->id}}"
+        >
             <div class="flex w-full gap-x-4">
                 <div class="w-full">
                     <p class=" text-gray-900">
-                        <span class="font-semibold">{{ $appointment->date }}</span>
-                        from
-                        <span class="font-semibold">{{ $appointment->start_time }}</span>
-                        to
-                        <span class="font-semibold">{{ $appointment->end_time }}</span>
+                        <a href="#">
+                            <flux:modal.trigger name="appointment-form-{{ $appointment->id }}">
+                                <span class="font-semibold">{{ $appointment->date }}</span>
+                                from
+                                <span class="font-semibold">{{ $appointment->start_time }}</span>
+                                to
+                                <span class="font-semibold">{{ $appointment->end_time }}</span>
+                            </flux:modal.trigger>
+                            <flux:modal name="appointment-form-{{ $appointment->id }}">
+                                <livewire:appointment-form :appointment="$appointment" />
+                            </flux:modal>
+                        </a>
                     </p>
                     <flux:separator
                         variant="subtle"
@@ -24,7 +34,7 @@
                         size="lg"
                         variant="strong"
                     >{{ $appointment->title }}</flux:text>
-                    <flux:text>{{ $appointment->description }}</flux:text>
+                    <flux:text>{!! $appointment->description !!}</flux:text>
 
                     <flux:separator
                         variant="subtle"
