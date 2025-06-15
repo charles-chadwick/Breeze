@@ -14,6 +14,7 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Support\Carbon;
 
@@ -51,27 +52,24 @@ class Patient extends Base implements AuthenticatableContract, AuthorizableContr
     /**
      * Date of Birth attribute
      */
-    public function age(): Attribute
+    public function age() : Attribute
     {
-        return Attribute::make(
-            get: fn () => Carbon::parse($this->attributes['dob'])->age
-        );
+        return Attribute::make(get: fn() => Carbon::parse($this->attributes[ 'dob' ])->age);
     }
 
     /**
      * Date of Birth attribute
      */
-    public function dob(): Attribute
+    public function dob() : Attribute
     {
-        return Attribute::make(
-            get: fn () => Carbon::parse($this->attributes['dob'])->format('m/d/Y')
-        );
+        return Attribute::make(get: fn() => Carbon::parse($this->attributes[ 'dob' ])
+                                                  ->format('m/d/Y'));
     }
 
     /**
      * Appointment relationship
      */
-    public function appointments(): HasMany
+    public function appointments() : HasMany
     {
         return $this->hasMany(Appointment::class);
     }
@@ -79,7 +77,7 @@ class Patient extends Base implements AuthenticatableContract, AuthorizableContr
     /**
      * Prescription relationship
      */
-    public function prescriptions(): HasMany
+    public function prescriptions() : HasMany
     {
         return $this->hasMany(Prescription::class);
     }

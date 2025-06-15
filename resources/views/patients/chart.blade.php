@@ -8,6 +8,12 @@
     </x-card>
     <x-card>
         <flux:heading size="lg">
+            Prescriptions
+        </flux:heading>
+        <x-prescriptions.index :prescriptions="$patient->prescriptions" />
+    </x-card>
+    <x-card>
+        <flux:heading size="lg">
             Appointments
         </flux:heading>
         <livewire:appointments :appointments="$patient->appointments" />
