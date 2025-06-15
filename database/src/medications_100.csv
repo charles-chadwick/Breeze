@@ -1,0 +1,35 @@
+Brand Name,Generic Name,Manufacturer,Strength,Dosage Form,NDC,Schedule
+Adderall,amphetamine/dextroamphetamine,Teva,20 mg,Tablet,59488-8005-01,II
+Vyvanse,lisdexamfetamine,Shire,30 mg,Capsule,49884-093-30,II
+Concerta,methylphenidate,Alza,18 mg,Tablet ER,00591-1115-18,II
+Ritalin,methylphenidate,Mylan,10 mg,Tablet,0378-1005-10,II
+Focalin XR,dexmethylphenidate,Novartis,10 mg,Capsule ER,00093-4218-10,II
+OxyContin,oxycodone,Columbia,10 mg,Tablet ER,12496-080-01,II
+Percocet,oxycodone/acetaminophen,Endo,5/325 mg,Tablet,69670-082-01,II
+Hydrocodone/APAP,hydrocodone/acetaminophen,Actavis,10/325 mg,Tablet,0591-0196-68,II
+Vicodin,hydrocodone/acetaminophen,Lupin,5/500 mg,Tablet,60505-050-03,II
+Morphine Sulfate,morphine,Sandoz,15 mg,Tablet,10122-118-15,II
+Dilaudid,hydromorphone,West-Ward,2 mg,Tablet,52481-005-02,II
+Methadone,methadone,Baxter,10 mg,Tablet,63323-501-10,IIW2
+MS Contin,morphine,Purdue,30 mg,Tablet ER,0591-0198-30,II
+Suboxone,buprenorphine/naloxone,Indivior,8/2 mg,Film,12496-621-10,III
+Buprenex,buprenorphine,Reckitt,0.3 mg/mL,Injection,12496-102-10,III
+Cesamet,nabilone,Valeant,0.25 mg,Capsule,00085-0500-01,III
+Butrans,buprenorphine,Esteve,5 mcg/hr,Patch,49884-010-01,III
+Tylenol with Codeine,acetaminophen/codeine,McNeil,300/30 mg,Tablet,59310-439-55,III
+Phendimetrazine,phendimetrazine,Zydus,35 mg,Tablet,67457-189-11,III
+Lyrica,pregabalin,Pfizer,75 mg,Capsule,79490-547-01,V
+Xanax,alprazolam,Upjohn,0.5 mg,Tablet,59310-088-15,IV
+Valium,diazepam,Valene,10 mg,Tablet,50419-146-10,IV
+Ativan,lorazepam,Wyeth,1 mg,Tablet,0409-3100-05,IV
+Ambien,zolpidem,Sanofi,10 mg,Tablet,55354-146-10,IV
+Restoril,temazepam,West-ward,15 mg,Capsule,0173-0130-15,IV
+Tramadol,tramadol,Teva,50 mg,Tablet,55154-161-10,IV
+Klonopin,clonazepam,Teva,0.5 mg,Tablet,51285-058-10,IV
+Imodium,loperamide,McNeil,2 mg,Tablet,76329-302-10,OTC
+Prozac,fluoxetine,Eli Lilly,20 mg,Capsule,0002-3210-31,Legend
+Lipitor,atorvastatin,Pfizer,20 mg,Tablet,0006-0401-31,Legend
+Zoloft,sertraline,Pfizer,50 mg,Tablet,0007-3165-21,Legend
+Singulair,montelukast,Merck,10 mg,Tablet,0006-0517-23,Legend
+Synthroid,levothyroxine,AbbVie,50 mcg,Tablet,54868-488-01,Legend
+Ventolin HFA,albuterol,GSK,90 mcg,Inhaler,0173-0828-10,Legend

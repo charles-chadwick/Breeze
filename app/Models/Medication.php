@@ -29,8 +29,8 @@ class Medication extends Base
     public function casts(): array
     {
         return [
-            'schedule' => DrugSchedule::class,
-            'dose_form' => DoseForm::class,
+//            'schedule' => DrugSchedule::class,
+//            'dose_form' => DoseForm::class,
         ];
     }
 
