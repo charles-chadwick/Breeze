@@ -17,9 +17,11 @@ class DatabaseSeeder extends Seeder
         //        (new DiagnosticCodeSeeder)->run();
 //        (new AppointmentSeeder)->run();
 //        (new AvatarSeeder)->run();
-      (new MedicationSeeder())->run();
+  //    (new MedicationSeeder())->run();
+      (new PrescriptionSeeder())->run();
 
     }
+
 
     public static function characterList(): array
     {
