@@ -10,9 +10,9 @@
             class="flex justify-between gap-x-6 py-5"
             wire:key="{{ $appointment->id}}"
         >
-            <div class="flex w-full gap-x-4">
+            <div class="flex gap-x-4">
                 <div class="w-full">
-                    <p class=" text-gray-900">
+                    <flux:heading>
                         <a href="#">
                             <flux:modal.trigger name="appointment-form-{{ $appointment->id }}">
                                 <span class="font-semibold">{{ $appointment->date }}</span>
@@ -25,15 +25,14 @@
                                 <livewire:appointment-form :appointment="$appointment" />
                             </flux:modal>
                         </a>
-                    </p>
+                    </flux:heading>
                     <flux:separator
                         variant="subtle"
                         class="my-2"
                     />
-                    <flux:text
-                        size="lg"
+                    <flux:heading
                         variant="strong"
-                    >{{ $appointment->title }}</flux:text>
+                    >{{ $appointment->title }}</flux:heading>
                     <flux:text>{!! $appointment->description !!}</flux:text>
 
                     <flux:separator
@@ -50,7 +49,7 @@
                 <p class=" text-gray-900 font-bold">{{ $appointment->status }}</p>
                 <p class="mt-1 text-sm text-gray-500">
                     @foreach($appointment->users as $user)
-                        <flux:badge class="my-1">{{ $user->full_name }}</flux:badge>
+                        <flux:badge class="my-1" variant="md">{{ $user->full_name }}</flux:badge>
                     @endforeach
                 </p>
             </div>

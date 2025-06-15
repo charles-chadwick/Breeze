@@ -8,11 +8,11 @@
                     ({{ $prescription->medication->generic_name }})
                 </div>
                 <div class="shrink-0">
-                    {{ $prescription->prescribed_at }}
+
                 </div>
             </flux:heading>
-            <flux:text>
-
+            <flux:text class="text-xs">
+                Prescribed by {{ $prescription->prescriber->full_name }} on {{ $prescription->prescribed_at }}
             </flux:text>
         </div>
     @empty
