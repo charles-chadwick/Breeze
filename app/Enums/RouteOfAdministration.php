@@ -4,6 +4,8 @@ namespace App\Enums;
 
 enum RouteOfAdministration: string
 {
+    use EnumToArray;
+
     case Oral = 'Oral';
     case Sublingual = 'Sublingual';
     case Buccal = 'Buccal';
