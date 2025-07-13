@@ -22,16 +22,13 @@ class UserSeeder extends Seeder
         DB::table('users')
           ->truncate();
         $characters = collect(json_decode(file_get_contents(database_path('src/rickandmorty_characters.json')), true))
-            ->filter(function ($value) {
-                return in_array($value['id'], [72, 73, 94, 116, 117, 149, 159, 194, 231, 242, 272, 301, 325, 328,
-                                               338, 432, 462, 497, 507, 512, 520, 521, 527, 532, 544, 579, 690, 774,
-                                               794, 734]);
-            });
+          ->random(100);
 
         $counter = 0;
 
         $admin = User::factory()
                      ->create([
+                         'status'     => UserStatus::Active,
                          'role'       => UserRole::Administrator,
                          'first_name' => 'John',
                          'last_name'  => 'Doe',
@@ -50,21 +47,30 @@ class UserSeeder extends Seeder
                 $counter <= 5  => UserRole::Doctor,
                 $counter <= 10 => UserRole::Nurse,
                 $counter <= 15 => UserRole::Assistant,
-                default        => UserRole::Staff
+                $counter <= 25 => UserRole::Staff,
+                default => UserRole::Patient,
             };
 
-            $last_name = trim(array_pop($name));
-            $first_name = count($name) > 0 ? implode(' ', $name) : $last_name;
-
-            $email = "$first_name";
-            if ($last_name !== '') {
-                $email .= ".".$last_name;
+            $created_at = fake()->dateTimeBetween('2020-01-01 00:00:00', '2021-01-01 00:00:00');
+            if ($role === UserRole::Patient) {
+                $admin = User::inRandomOrder()->first();
+                CauserResolver::setCauser($admin);
+                $created_at = fake()->dateTimeBetween('2021-01-02 00:00:00', '-1 year');
             }
-            $email .= ".".rand(1, 999)."@example.com";
-            $created_at = fake()->dateTimeBetween('2020-01-01 00:00:00', '-1 year');
+
+            $first_name = array_shift($name);
+            $last_name = trim(array_pop($name));
+            $middle_name = implode(' ', $name);
+            if ($last_name === "") {
+                $last_name = $first_name;
+            }
+
+            $email = "$first_name.$last_name".rand(1, 999)."@example.com";
+
             $model = User::create([
                 'status'     => UserStatus::Active,
                 'first_name' => $first_name,
+                'middle_name' => $middle_name,
                 'last_name'  => $last_name === '' ? 'N/A' : $last_name,
                 'role'       => $role,
                 'email'      => strtolower($email),
@@ -88,9 +94,8 @@ class UserSeeder extends Seeder
                 echo $e->getMessage();
             }
 
-            echo "{$character['id']}, ";
         }
 
-        // echo "$counter total\n";
+        echo "$counter total\n";
     }
 }
