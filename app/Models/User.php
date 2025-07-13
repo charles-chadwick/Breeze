@@ -28,8 +28,11 @@ class User extends Base implements AuthenticatableContract, AuthorizableContract
     protected $fillable = [
         'role',
         'status',
+        'prefix',
         'first_name',
+        'middle_name',
         'last_name',
+        'suffix',
         'email',
         'password',
     ];
