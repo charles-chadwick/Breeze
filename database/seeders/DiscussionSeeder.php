@@ -83,8 +83,14 @@ class DiscussionSeeder extends Seeder
                         'discussion_id' => $discussion->id,
                         'user_id'       => $discussion_user->id,
                         'status'        => 'Unread',
+                        'content'       => "<p>".str(collect($content)
+                            ->random(rand(1, 10))
+                            ->each(function ($con) {
+                                return trim(str_replace(['"', '"'], '', $con));
+                            })->implode('</p><p>'))."</p>",
                         'created_at'    => fake()->dateTimeBetween(Carbon::parse($discussion->created_at))
-                    ])->create();
+                    ])
+                                     ->create();
                 }
 
             }
