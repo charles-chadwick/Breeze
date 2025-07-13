@@ -3,11 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Discussion extends Base
 {
@@ -31,5 +29,13 @@ class Discussion extends Base
 
     public function messages() : HasMany {
         return $this->hasMany(DiscussionMessage::class);
+    }
+
+    public function lastPost() {
+        return $this->messages()->orderBy('created_at', 'desc')->first();
+    }
+
+    public function firstPost()  {
+        return $this->messages()->orderBy('created_at')->first();
     }
 }
