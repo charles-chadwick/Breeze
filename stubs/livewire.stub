@@ -1,0 +1,18 @@
+<?php
+
+namespace [namespace];
+
+use Livewire\Component;
+use Illuminate\Contracts\View\View;
+
+class [class] extends Component
+{
+    public function mount() {
+
+    }
+
+    public function render() : View|Closure|string
+    {
+        return view('[view]');
+    }
+}
