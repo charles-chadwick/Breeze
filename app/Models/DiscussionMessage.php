@@ -3,16 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class DiscussionMessage extends Model
+class DiscussionMessage extends Base
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+
+    protected $table = 'discussions_messages';
 
     protected $fillable = [
-        'discussions_id',
+        'discussion_id',
         'status',
         'content',
         'user_id',
@@ -20,10 +20,10 @@ class DiscussionMessage extends Model
 
     public function discussions() : BelongsTo
     {
-        return $this->belongsTo(Discussions::class);
+        return $this->belongsTo(Discussion::class);
     }
 
-    public function createdBy() : BelongsTo
+    public function user() : BelongsTo
     {
         return $this->belongsTo(User::class);
     }

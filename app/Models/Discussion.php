@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Discussions extends Model
+class Discussion extends Model
 {
     use HasFactory, SoftDeletes;
 
@@ -17,7 +17,7 @@ class Discussions extends Model
         'user_id',
     ];
 
-    public function createdBy() : BelongsTo
+    public function user() : BelongsTo
     {
         return $this->belongsTo(User::class);
     }

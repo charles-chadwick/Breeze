@@ -2,14 +2,14 @@
 
 namespace Database\Factories;
 
-use App\Models\Discussions;
+use App\Models\Discussion;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Carbon;
 
-class DiscussionsFactory extends Factory
+class DiscussionFactory extends Factory
 {
-    protected $model = Discussions::class;
+    protected $model = Discussion::class;
 
     public function definition() : array
     {
