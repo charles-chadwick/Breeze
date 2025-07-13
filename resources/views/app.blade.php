@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full bg-zinc-200">
 <head>
     <meta charset="utf-8">
     <meta
@@ -24,12 +24,12 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 </head>
-<body>
+<body class="h-full bg-zinc-200">
 <div class="mx-4">
     @yield("content")
 </div>
 @persist("toast")
-<flux:toast />
+    <flux:toast />
 @endpersist
 @livewireScripts
 @fluxScripts
