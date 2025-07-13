@@ -21,7 +21,7 @@ class DiscussionMessageFactory extends Factory
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
 
-            'discussions_id' => Discussion::factory(),
+            'discussion_id' => Discussion::factory(),
             'user_id'  => User::factory(),
         ];
     }

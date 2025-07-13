@@ -20,7 +20,7 @@ class DiscussionMessage extends Base
 
     public function discussions() : BelongsTo
     {
-        return $this->belongsTo(Discussion::class);
+        return $this->belongsTo(Discussion::class, 'discussion_id');
     }
 
     public function user() : BelongsTo

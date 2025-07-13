@@ -11,7 +11,7 @@ return new class extends Migration {
     {
         Schema::create('discussions_messages', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Discussion::class);
+            $table->unsignedBigInteger('discussion_id');
             $table->string('status');
             $table->text('content');
             $table->foreignIdFor(User::class, 'user_id');
