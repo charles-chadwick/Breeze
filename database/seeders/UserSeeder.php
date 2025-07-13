@@ -22,9 +22,10 @@ class UserSeeder extends Seeder
         DB::table('users')
           ->truncate();
         $characters = collect(json_decode(file_get_contents(database_path('src/rickandmorty_characters.json')), true))
-            ->random(30)
-            ->unique(function (array $character) {
-                return $character[ 'name' ];
+            ->filter(function ($value) {
+                return in_array($value['id'], [72, 73, 94, 116, 117, 149, 159, 194, 231, 242, 272, 301, 325, 328,
+                                               338, 432, 462, 497, 507, 512, 520, 521, 527, 532, 544, 579, 690, 774,
+                                               794, 734]);
             });
 
         $counter = 0;
@@ -41,22 +42,19 @@ class UserSeeder extends Seeder
 
         foreach ($characters as $character) {
 
-            $name = array_map(function($n) {
+            $name = array_map(function ($n) {
                 return trim(preg_replace('/[^A-Za-z0-9\s]/', '', $n));
             }, explode(' ', $character[ 'name' ]));
-            if (preg_match('/7\+7/', $character[ 'name' ])) {
-                continue;
-            }
 
             $role = match (true) {
-                $counter <= 5 => UserRole::Doctor,
+                $counter <= 5  => UserRole::Doctor,
                 $counter <= 10 => UserRole::Nurse,
                 $counter <= 15 => UserRole::Assistant,
-                default       => UserRole::Staff
+                default        => UserRole::Staff
             };
 
-            $first_name = array_shift($name);
             $last_name = trim(array_pop($name));
+            $first_name = count($name) > 0 ? implode(' ', $name) : $last_name;
 
             $email = "$first_name";
             if ($last_name !== '') {
@@ -89,8 +87,10 @@ class UserSeeder extends Seeder
             } catch (FileDoesNotExist|FileIsTooBig $e) {
                 echo $e->getMessage();
             }
+
+            echo "{$character['id']}, ";
         }
 
-        echo "$counter total\n";
+        // echo "$counter total\n";
     }
 }
