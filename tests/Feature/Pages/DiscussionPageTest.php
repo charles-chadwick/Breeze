@@ -4,7 +4,7 @@ use App\Models\Discussion;
 use App\Models\User;
 use function Pest\Laravel\get;
 
-it('has a list of discussions created by a specific user', function () {
+it('has a list of discussions created by a specific users', function () {
 
     $user = User::factory()
                 ->create();

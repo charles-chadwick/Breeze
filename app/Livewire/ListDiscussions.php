@@ -8,9 +8,9 @@ use Livewire\Component;
 
 class ListDiscussions extends Component
 {
-    public $sort_by = '';
+    public $sort_by        = 'created_at';
     public $sort_direction = 'desc';
-    public $status = [];
+    public $status         = [];
 
     public function mount() : void
     {
@@ -33,7 +33,7 @@ class ListDiscussions extends Component
     public function render() : View
     {
         return view('livewire.discussions.list', [
-            'discussions' => Discussion::all()
+            'discussions' => Discussion::whereRelation('users', 'user_id', '=', auth()->id())->get()
 
         ]);
     }

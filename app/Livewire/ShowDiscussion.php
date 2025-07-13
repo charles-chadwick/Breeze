@@ -20,8 +20,8 @@ class ShowDiscussion extends Component
         return view('livewire.discussions.show', [
             'discussion' => $this->discussion,
             'messages'   => $this->discussion->messages()
-                                             ->orderBy('created_at', 'desc')
-                                             ->get()
+                 ->orderBy('created_at', 'desc')
+                 ->get()
         ]);
     }
 }

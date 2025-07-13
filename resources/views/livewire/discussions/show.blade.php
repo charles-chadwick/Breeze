@@ -1,10 +1,22 @@
-<x-partials.card>
-    <x-partials.discussion :discussion="$discussion" />
-    @foreach($messages as $message)
-        <div class="my-2 py-2 border-t border-t-zinc-100" wire:key="{{ $message->id }}">
-            <p>{!! $message->content !!}</p>
-            <p class="text-sm text-right text-zinc-700">At {{ $message->created_at }} {{ $message->user->full_name }}</p>
-        </div>
+<div>
+    <x-partials.card>
+        <x-discussions.details class="text-sm" :discussion="$discussion" />
+    </x-partials.card>
 
-    @endforeach
-</x-partials.card>
+    <x-partials.card class="mt-2 text-sm">
+        @foreach($messages as $message)
+            <div
+                class="py-2  @if(!$loop->last) border-b border-b-zinc-100 @endif"
+                wire:key="{{ $message->id }}"
+            >
+                <p class="text-sm font-bold">
+                    <x-partials.date :datetime="$message->created_at" />
+                    <x-users.details :user="$message->user" />
+                    said:
+                </p>
+
+                <p class="mt-2">{!! $message->content !!}</p>
+            </div>
+        @endforeach
+    </x-partials.card>
+</div>

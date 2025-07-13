@@ -7,7 +7,6 @@ use App\Models\Discussion;
 use App\Models\DiscussionMessage;
 use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Spatie\Activitylog\Facades\CauserResolver;
@@ -17,14 +16,14 @@ class DiscussionSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run() : void
+    public function run(): void
     {
         DB::table('discussions')
-          ->truncate();
+            ->truncate();
         DB::table('discussions_messages')
-          ->truncate();
+            ->truncate();
         DB::table('discussions_users')
-          ->truncate();
+            ->truncate();
 
         $content = collect(file(database_path('src/RickAndMortyContent.csv')));
 
@@ -35,62 +34,62 @@ class DiscussionSeeder extends Seeder
             CauserResolver::setCauser($user);
 
             // start one to five discussions, then add in some people
-            for ($i = 0 ; $i < rand(1, 5) ; $i++) {
+            for ($i = 0; $i < rand(1, 5); $i++) {
                 $discussion = Discussion::factory()
-                                        ->create([
-                                            'title'      => str($content->random())
-                                                ->trim()
-                                                ->replace('"', '')
-                                                ->limit(),
-                                            'created_at' => fake()->dateTimeBetween(Carbon::parse($user->created_at)
-                                                                                          ->subDays(5), '-1 day'),
-                                            'user_id'    => $user->id,
-                                        ]);
-
+                    ->create([
+                        'title' => str($content->random())
+                            ->trim()
+                            ->replace('"', '')
+                            ->limit(),
+                        'created_at' => fake()->dateTimeBetween(Carbon::parse($user->created_at)
+                            ->subDays(5), '-1 day'),
+                        'user_id' => $user->id,
+                    ]);
+                $discussion->users()->attach($user, ['status' => 'Read']);
                 // Get 1 to 3 people other than OP, who are a part of this.
                 // One should be a patient. The other are staff.
 
                 if ($user->role !== UserRole::Patient) {
                     $patient = User::where('role', UserRole::Patient)
-                                   ->get()
-                                   ->first();
+                        ->get()
+                        ->first();
                 } else {
                     $patient = $user;
                 }
 
                 $other_users = User::where('role', '!=', UserRole::Patient)
-                                   ->inRandomOrder()
-                                   ->limit(rand(1, 3))
-                                   ->get();
+                    ->inRandomOrder()
+                    ->limit(rand(1, 3))
+                    ->get();
                 $discussion->users()
-                           ->attach($other_users, [
-                               'status'     => 'Unread',
-                               'created_at' => Carbon::parse($discussion->created_at)
-                                                     ->toDateTimeString()
-                           ]);
+                    ->attach($other_users, [
+                        'status' => 'Unread',
+                        'created_at' => Carbon::parse($discussion->created_at)
+                            ->toDateTimeString(),
+                    ]);
                 $discussion->users()
-                           ->attach($patient, [
-                               'status'     => 'Unread',
-                               'created_at' => Carbon::parse($discussion->created_at)
-                                                     ->toDateTimeString()
-                           ]);
+                    ->attach($patient, [
+                        'status' => 'Unread',
+                        'created_at' => Carbon::parse($discussion->created_at)
+                            ->toDateTimeString(),
+                    ]);
 
-                for ($a = 0 ; $a <= rand(1, 10) ; $a++) {
+                for ($a = 0; $a <= rand(1, 10); $a++) {
 
                     $discussion_user = $discussion->users->random();
 
                     DiscussionMessage::factory([
                         'discussion_id' => $discussion->id,
-                        'user_id'       => $discussion_user->id,
-                        'status'        => 'Unread',
-                        'content'       => "<p>".str(collect($content)
+                        'user_id' => $discussion_user->id,
+                        'status' => 'Unread',
+                        'content' => '<p>'.str(collect($content)
                             ->random(rand(1, 10))
                             ->each(function ($con) {
                                 return trim(str_replace(['"', '"'], '', $con));
-                            })->implode('</p><p>'))."</p>",
-                        'created_at'    => fake()->dateTimeBetween(Carbon::parse($discussion->created_at))
+                            })->implode('</p><p>')).'</p>',
+                        'created_at' => fake()->dateTimeBetween(Carbon::parse($discussion->created_at)),
                     ])
-                                     ->create();
+                        ->create();
                 }
 
             }
