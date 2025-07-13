@@ -2,7 +2,6 @@
 
 use App\Models\Discussion;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Factories\Sequence;
 use function Pest\Laravel\get;
 
 it('has a list of discussions created by a specific user', function () {
@@ -23,4 +22,17 @@ it('has a list of discussions created by a specific user', function () {
             $discussions->last()->title,
             $user->full_name,
         ]);
+});
+
+it('has a list of discussions with many associated users', function () {
+
+    $users = User::factory(5)
+                 ->create();
+
+    $discussions = Discussion::factory()
+                             ->create();
+
+    $discussions->users()
+                ->attach($users, ['status' => 'Unread']);
+    expect($discussions->users->count())->toBe(5);
 });
