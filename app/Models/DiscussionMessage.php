@@ -13,7 +13,6 @@ class DiscussionMessage extends Base
 
     protected $fillable = [
         'discussion_id',
-        'status',
         'content',
         'user_id',
     ];

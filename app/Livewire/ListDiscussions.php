@@ -6,7 +6,7 @@ use App\Models\Discussion;
 use Illuminate\View\View;
 use Livewire\Component;
 
-class DiscussionList extends Component
+class ListDiscussions extends Component
 {
     public $sort_by = '';
     public $sort_direction = 'desc';

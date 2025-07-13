@@ -1,8 +1,11 @@
 <?php
 
-use App\Livewire\DiscussionList;
+
+use App\Livewire\ListDiscussions;
+use App\Livewire\ShowDiscussion;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('discussions')->group(function () {
-   Route::get('/', DiscussionList::class)->name('discussions.list');
+   Route::get('/', ListDiscussions::class)->name('discussions.list');
+   Route::get('/{discussion}', ShowDiscussion::class)->name('discussions.show');
 });
