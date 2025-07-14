@@ -55,7 +55,12 @@ class User extends Base implements AuthenticatableContract, AuthorizableContract
     {
         return Attribute::make(
             get: function () {
-                return $this->getFirstMediaUrl('avatar');
+                $avatar = $this->getFirstMediaUrl('avatar');
+                if (!file_exists($this->getFirstMediaPath('avatar'))) {
+                    $avatar = asset('default-avatar.png');
+                }
+
+                return $avatar;
             }
         );
     }

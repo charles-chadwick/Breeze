@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Livewire\Traits\Sortable;
 use App\Models\Discussion;
 use Illuminate\Contracts\View\View;
 use Livewire\Attributes\On;
@@ -9,35 +10,23 @@ use Livewire\Component;
 
 class ShowDiscussion extends Component
 {
+    use Sortable;
+
     public ?Discussion $discussion;
-    public             $sort_by = 'created_at';
-    public             $sort_direction_text = 'Oldest To Newest';
-    public string      $sort_direction = 'desc';
 
     public function mount(?Discussion $discussion) : void
     {
         $this->discussion = $discussion;
     }
 
-    public function sort($column) : void
-    {
-        if ($this->sort_by === $column) {
-            $this->sort_direction = $this->sort_direction === 'asc' ? 'desc' : 'asc';
-            $this->sort_direction_text = "Newest To Oldest";
-        } else {
-            $this->sort_by = $column;
-            $this->sort_direction = 'asc';
-            $this->sort_direction_text = "Oldest To Newest";
-        }
-    }
     #[On('refresh-page')]
     public function render() : View
     {
         return view('livewire.discussions.show', [
             'discussion' => $this->discussion,
             'messages'   => $this->discussion->messages()
-                 ->orderBy($this->sort_by, $this->sort_direction)
-                 ->get()
+                                             ->orderBy($this->sort_by, $this->sort_direction)
+                                             ->get()
         ]);
     }
 }

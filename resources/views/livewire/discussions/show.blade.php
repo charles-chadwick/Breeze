@@ -26,14 +26,15 @@
                 wire:key="{{ $message->id }}"
             >
                 <div class="relative flex items-start space-x-3">
-                    <div class="relative">
+                    <div class="relative shrink-0">
                         <img
-                            class="flex size-16 items-center shadow-xs justify-center rounded-lg ring-2 ring-pink-800/20"
+                            class="flex size-16 items-center shadow-xs justify-center rounded-lg ring-2 ring-zinc-800/20"
                             src="{{ $message->user->avatar }}"
-                            alt=""
+                            alt="{{ $message->user->full_name }}"
+                            title="{{ $message->user->full_name }}"
                         />
                     </div>
-                    <div class="min-w-0 flex-1">
+                    <div class="min-w-0 grow">
                         <div>
                             <div class="text-sm">
                                 <a
@@ -46,21 +47,32 @@
                         <div class="mt-2 text-sm text-zinc-900">
                             {!! $message->content !!}
                         </div>
-                        <flux:modal.trigger name="message-delete-form-{{ $message->id }}">
-                            <a
-                                href="#"
-                                class="rounded-full bg-zinc-200 px-2.5 py-1 text-sm font-semibold text-zinc-500 shadow-xs hover:bg-zinc-500 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-600"
-                            >
-                                Delete
-                            </a>
-                        </flux:modal.trigger>
-                        <flux:modal class="w-1/2" name="message-delete-form-{{ $message->id }}">
-                            <livewire:confirm-delete
-                                modal_id="message-delete-form-{{ $message->id }}"
-                                :model="$message"
-                            />
-                        </flux:modal>
                     </div>
+                    <flux:dropdown>
+                        <flux:button icon:trailing="chevron-down">Options</flux:button>
+
+                        <flux:menu>
+                            <flux:menu.item
+                                variant="danger"
+                                icon="trash"
+                            >
+                                <flux:modal.trigger name="message-delete-form-{{ $message->id }}">
+                                    <a href="#"> Delete</a>
+                                </flux:modal.trigger>
+                            </flux:menu.item>
+                        </flux:menu>
+                    </flux:dropdown>
+
+                    <flux:modal
+                        class="w-1/2"
+                        name="message-delete-form-{{ $message->id }}"
+                    >
+                        <livewire:confirm-delete
+                            wire:key="confirm-{{ $message->id }}"
+                            modal_id="message-delete-form-{{ $message->id }}"
+                            :model="$message"
+                        />
+                    </flux:modal>
                 </div>
             </div>
         @endforeach
