@@ -81,7 +81,6 @@ class DiscussionSeeder extends Seeder
                     DiscussionMessage::factory([
                         'discussion_id' => $discussion->id,
                         'user_id' => $discussion_user->id,
-                        'status' => 'Unread',
                         'content' => '<p>'.str(collect($content)
                             ->random(rand(1, 10))
                             ->each(function ($con) {
