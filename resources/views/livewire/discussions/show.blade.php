@@ -1,4 +1,5 @@
 <div>
+    <!-- header with details and menu -->
     <x-partials.card>
         <x-discussions.details
             :discussion="$discussion"
@@ -15,18 +16,26 @@
             </flux:modal.trigger>
 
         </p>
+        <flux:modal
+            variant="bare"
+            class="w-1/2"
+            name="add-message-form"
+        >
+            <livewire:message-form
+                :discussion="$discussion"
+                wire:key="add-message-form-{{ uniqid() }}"
+                modal_id="add-message-form"
+            />
+        </flux:modal>
     </x-partials.card>
-    <flux:modal
-        variant="bare"
-        class="w-1/2"
-        name="add-message-form"
-    >
-        <livewire:message-form
-            :discussion="$discussion"
-            wire:key="add-message-form-{{ uniqid() }}"
-            modal_id="add-message-form"
-        />
-    </flux:modal>
+    <!-- header with details and menu -->
+
+    <!-- sorting and searching -->
+    <x-partials.card class="mt-4">
+        <x-partials.sort />
+    </x-partials.card>
+
+    <!-- main body of messages -->
     <x-partials.card class="mt-4 flow-root">
         @foreach($messages as $message)
             <div
@@ -87,4 +96,5 @@
             </div>
         @endforeach
     </x-partials.card>
+    <!-- main body of messages -->
 </div>
