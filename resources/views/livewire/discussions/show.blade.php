@@ -50,7 +50,9 @@
                                     class="font-medium text-zinc-900"
                                 >{{ $message->user->full_name }}</a>
                             </div>
-                            <p class="mt-0.5 text-sm text-zinc-500">Replied {{ $message->created_at }}</p>
+                            <p class="mt-0.5 text-sm text-zinc-500">Replied
+                            <x-partials.date :datetime="$message->created_at" />
+                            </p>
                         </div>
                         <div class="mt-2 text-sm text-zinc-900">
                             {!! $message->content !!}

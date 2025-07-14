@@ -1,3 +1,4 @@
+@php use Carbon\Carbon; @endphp
 <div>
     <h1 class="font-bold">
         <a href="{{ route('discussions.show', $discussion) }}">{{ $discussion->title }}</a>
@@ -7,13 +8,16 @@
         <div>
             <div class="mt-1 items-center gap-x-2 text-sm/4 text-zinc-500">
                 <p>
+                    Created by
                     <a
                         href="#"
                         class="hover:underline"
-                    >{{ $discussion->user->full_name }}</a>
+                    >{{ $discussion->user->full_name }}
+                    </a>
                 </p>
                 <p>
-                    <time datetime="2023-01-23T22:34Z">{{ $discussion->lastPost()->created_at }}</time>
+                    Updated
+                    <x-partials.date :datetime="$discussion->lastPost()->created_at" />
                 </p>
             </div>
         </div>
@@ -54,7 +58,7 @@
                     </a>
                 </dt>
                 <a href="{{ route('discussions.show', $discussion) }}">
-                    <dd class="text-sm/6 text-zinc-900">{{ $discussion->messages()->count() }}</dd>
+                    <dd class="text-sm/6 text-zinc-800">{{ $discussion->messages()->count() }}</dd>
                 </a>
             </div>
         </dl>
