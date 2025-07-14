@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Discussion;
 use Illuminate\Contracts\View\View;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class ShowDiscussion extends Component
@@ -29,7 +30,7 @@ class ShowDiscussion extends Component
             $this->sort_direction_text = "Oldest To Newest";
         }
     }
-
+    #[On('refresh-page')]
     public function render() : View
     {
         return view('livewire.discussions.show', [
