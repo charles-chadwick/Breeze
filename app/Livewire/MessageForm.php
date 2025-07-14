@@ -29,7 +29,6 @@ class MessageForm extends Component
         $this->validate();
 
         $message_data = [
-            'status'  => 'Unread',
             'content' => $this->content,
         ];
 
