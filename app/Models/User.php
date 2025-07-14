@@ -11,6 +11,7 @@ use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -19,8 +20,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Base implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
-    use Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail;
-    use HasAvatar, HasFactory, IsPerson, Notifiable;
+    use Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail, HasFactory, Notifiable;
 
     public function __construct(array $attributes = [])
     {
@@ -51,8 +51,49 @@ class User extends Base implements AuthenticatableContract, AuthorizableContract
             'password' => 'hashed',
         ];
     }
-
+    public function avatar(): Attribute
+    {
+        return Attribute::make(
+            get: function () {
+                return $this->getFirstMediaUrl('avatar');
+            }
+        );
+    }
     public function discussions(): BelongsToMany {
         return $this->belongsToMany(Discussion::class, 'discussions_users');
+    }
+
+    public function fullName(): Attribute
+    {
+        return Attribute::make(get: function ($value) {
+            return collect([
+                $this->first_name,
+                $this->middle_name,
+                $this->last_name,
+            ])
+                ->filter(function ($value) {
+                    return trim($value) !== '';
+                })
+                ->implode(' ');
+        });
+
+    }
+
+    public function fullNameWithSalutations(): Attribute
+    {
+        return Attribute::make(get: function ($value) {
+            return collect([
+                $this->prefix,
+                $this->first_name,
+                $this->middle_name,
+                $this->last_name,
+                $this->suffix,
+            ])
+                ->filter(function ($value) {
+                    return trim($value) !== '';
+                })
+                ->implode(' ');
+        });
+
     }
 }
