@@ -5,7 +5,7 @@
             class="flex flex-wrap items-center justify-between gap-x-6 gap-y-4 py-2 sm:flex-nowrap"
         />
         <p class="pb-1">
-            <flux:modal.trigger name="message-form-{{ $discussion->id }}">
+            <flux:modal.trigger name="add-message-form">
                 <a
                     href="#"
                     class="rounded-full bg-zinc-200 px-2.5 py-1 text-sm font-semibold text-zinc-500 shadow-xs hover:bg-zinc-500 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-600"
@@ -13,12 +13,20 @@
                     Add Reply
                 </a>
             </flux:modal.trigger>
-            <flux:modal name="message-form-{{ $discussion->id }}">
-                <livewire:message-form :discussion="$discussion" />
-            </flux:modal>
+
         </p>
     </x-partials.card>
-
+    <flux:modal
+        variant="bare"
+        class="w-1/2"
+        name="add-message-form"
+    >
+        <livewire:message-form
+            :discussion="$discussion"
+            wire:key="add-message-form-{{ uniqid() }}"
+            modal_id="add-message-form"
+        />
+    </flux:modal>
     <x-partials.card class="mt-4 flow-root">
         @foreach($messages as $message)
             <div
@@ -49,7 +57,7 @@
                         </div>
                     </div>
                     <flux:dropdown>
-                        <flux:button icon:trailing="chevron-down">Options</flux:button>
+                        <flux:button icon:trailing="ellipsis-vertical"></flux:button>
 
                         <flux:menu>
                             <flux:menu.item

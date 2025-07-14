@@ -15,6 +15,7 @@ class DiscussionMessage extends Base
         'discussion_id',
         'content',
         'user_id',
+        'status'
     ];
 
     public function discussions() : BelongsTo
