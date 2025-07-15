@@ -1,8 +1,7 @@
 <div>
 
     <!-- sorting and searching -->
-    <x-partials.card class="my-4">
-        <x-partials.sort />
+    <x-partials.card class="my-4 py-4">
         <x-partials.modal
             id="add-discussion-form"
             href="#"
@@ -10,8 +9,9 @@
         >
             <livewire:discussion-form modal_id="add-discussion-form" />
         </x-partials.modal>
+
         <x-partials.modal.trigger
-            class="w-1/2"
+            class="btn-primary"
             id="add-discussion-form"
         >
             Add New Discussion

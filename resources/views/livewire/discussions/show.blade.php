@@ -80,7 +80,7 @@
 
     <!-- main reply thing -->
     <x-partials.card class="mt-4">
-        Leave a reply
+        <h3 class="font-semibold">Leave a reply</h3>
         <livewire:message-form :discussion="$discussion" />
     </x-partials.card>
     <!-- main reply thing -->
