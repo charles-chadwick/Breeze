@@ -9,7 +9,7 @@ trait Sortable
     public $sort_direction      = 'desc';
     public $sort_direction_text = "Oldest To Newest";
 
-    public function sort($column = 'created_at') : void
+    public function sort($column) : void
     {
         if ($this->sort_by === $column) {
             $this->sort_direction = $this->sort_direction === 'asc' ? 'desc' : 'asc';

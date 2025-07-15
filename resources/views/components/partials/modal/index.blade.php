@@ -24,7 +24,7 @@
 
     <div
         @click.stop
-        class="bg-white backdrop-opacity-100 rounded-lg shadow-xl {{ $max_width }} w-full mx-4 p-6 z-10 transform transition-all"
+        class="bg-white backdrop-opacity-100 rounded-lg shadow-xl {{ $max_width }} w-full mx-4 px-4 py-4 z-10 transform transition-all"
         x-show="isOpen"
         x-transition
     >
@@ -33,19 +33,19 @@
         @endif
 
         <div {{ $attributes }}>
-        {{ $slot }}
+            {{ $slot }}
         </div>
+        @if($buttons != null)
+            <div class="mt-6 text-center">
 
-        <div class="mt-6 text-center">
-            @if($buttons != null)
                 {{ $buttons }}
-            <button
-                @click="close()"
-                class="px-4 py-2  text-zinc-900 rounded"
-            >
-                Close
-            </button>
-            @endif
-        </div>
+                <button
+                    @click="close()"
+                    class="px-4 py-2  text-zinc-900 rounded"
+                >
+                    Close
+                </button>
+            </div>
+        @endif
     </div>
 </div>

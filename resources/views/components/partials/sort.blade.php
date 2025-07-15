@@ -1,7 +1,17 @@
 <div>
-    <div class="mb-4">
-        <a href="#" wire:model="sort_direction" wire:click="sort">
+    <h3 class="font-semibold">
+        Sort By
+    </h3>
+    <div class="mt-2">
+        <a
+            href="#"
+            wire:click="sort('created_at')"
+        >Created</a>
+        |
+        <a
+            href="#"
+            wire:click="sort('title')"
+        >Title</a>
 
-        </a>
     </div>
 </div>
