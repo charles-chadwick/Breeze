@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum DiscussionUserStatus : string
+enum DiscussionUserStatus: string
 {
     use EnumToArray;
 

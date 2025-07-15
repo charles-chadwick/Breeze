@@ -2,16 +2,14 @@
 
 namespace App\Livewire\Partials;
 
-use Livewire\Component;
 use Illuminate\Contracts\View\View;
+use Livewire\Component;
 
 class Sort extends Component
 {
-    public function mount() {
+    public function mount() {}
 
-    }
-
-    public function render() : View|Closure|string
+    public function render(): View|Closure|string
     {
         return view('livewire.partials.sort');
     }

@@ -11,16 +11,16 @@ use Livewire\WithPagination;
 
 class ListDiscussions extends Component
 {
-    use WithPagination, Sortable;
+    use Sortable, WithPagination;
 
     #[On('refresh-page')]
-    public function render() : View
+    public function render(): View
     {
         // we are getting this user's stuff, but what about others?
         return view('livewire.discussions.list', [
             'discussions' => Discussion::whereRelation('users', 'user_id', '=', auth()->id())
-                                       ->orderBy($this->sort_by, $this->sort_direction)
-                                       ->get()
+                ->orderBy($this->sort_by, $this->sort_direction)
+                ->get(),
 
         ]);
     }

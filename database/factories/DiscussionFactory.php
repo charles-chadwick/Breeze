@@ -11,12 +11,12 @@ class DiscussionFactory extends Factory
 {
     protected $model = Discussion::class;
 
-    public function definition() : array
+    public function definition(): array
     {
         return [
-            'title'      => $this->faker->word(),
+            'title' => $this->faker->word(),
 
-            'status'     => $this->faker->word(),
+            'status' => $this->faker->word(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
 

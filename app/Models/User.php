@@ -3,8 +3,6 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Models\Traits\Attributes\HasAvatar;
-use App\Models\Traits\Attributes\IsPerson;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -14,13 +12,12 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Base implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
-    use Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail, HasFactory, Notifiable;
+    use Authenticatable, Authorizable, CanResetPassword, HasFactory, MustVerifyEmail, Notifiable;
 
     public function __construct(array $attributes = [])
     {
@@ -51,12 +48,13 @@ class User extends Base implements AuthenticatableContract, AuthorizableContract
             'password' => 'hashed',
         ];
     }
+
     public function avatar(): Attribute
     {
         return Attribute::make(
             get: function () {
                 $avatar = $this->getFirstMediaUrl('avatar');
-                if (!file_exists($this->getFirstMediaPath('avatar'))) {
+                if (! file_exists($this->getFirstMediaPath('avatar'))) {
                     $avatar = asset('default-avatar.png');
                 }
 
@@ -64,7 +62,9 @@ class User extends Base implements AuthenticatableContract, AuthorizableContract
             }
         );
     }
-    public function discussions(): BelongsToMany {
+
+    public function discussions(): BelongsToMany
+    {
         return $this->belongsToMany(Discussion::class, 'discussions_users');
     }
 

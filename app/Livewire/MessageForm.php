@@ -10,12 +10,15 @@ use Livewire\Component;
 
 class MessageForm extends Component
 {
-    public Discussion         $discussion;
-    public ?DiscussionMessage $message;
-    public                    $content;
-    public                    $modal_id;
+    public Discussion $discussion;
 
-    public function mount(Discussion $discussion, ?DiscussionMessage $message) : void
+    public ?DiscussionMessage $message;
+
+    public $content;
+
+    public $modal_id;
+
+    public function mount(Discussion $discussion, ?DiscussionMessage $message): void
     {
         $this->discussion = $discussion;
         $this->message = $message;
@@ -24,7 +27,7 @@ class MessageForm extends Component
         }
     }
 
-    public function save() : void
+    public function save(): void
     {
         $this->validate();
 
@@ -35,7 +38,7 @@ class MessageForm extends Component
         if ($this->message->id === null) {
             $message_data['user_id'] = auth()->id();
             $this->message = $this->discussion->messages()
-                                              ->create($message_data);
+                ->create($message_data);
             $message = 'Message has been created';
         } else {
             $this->message->update($message_data);
@@ -45,17 +48,17 @@ class MessageForm extends Component
         Flux::toast($message, heading: 'Success', variant: 'success', position: 'top-right');
         Flux::modal($this->modal_id)
             ->close();
-        $this->dispatch("refresh-page");
+        $this->dispatch('refresh-page');
     }
 
-    protected function rules() : array
+    protected function rules(): array
     {
         return [
             'content' => 'required|string',
         ];
     }
 
-    public function render() : View
+    public function render(): View
     {
         return view('livewire.discussions.message-form');
     }

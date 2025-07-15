@@ -15,15 +15,15 @@ class DiscussionMessage extends Base
         'discussion_id',
         'content',
         'user_id',
-        'status'
+        'status',
     ];
 
-    public function discussions() : BelongsTo
+    public function discussions(): BelongsTo
     {
         return $this->belongsTo(Discussion::class, 'discussion_id');
     }
 
-    public function user() : BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }

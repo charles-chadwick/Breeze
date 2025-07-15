@@ -14,19 +14,19 @@ class ShowDiscussion extends Component
 
     public ?Discussion $discussion;
 
-    public function mount(?Discussion $discussion) : void
+    public function mount(?Discussion $discussion): void
     {
         $this->discussion = $discussion;
     }
 
     #[On('refresh-page')]
-    public function render() : View
+    public function render(): View
     {
         return view('livewire.discussions.show', [
             'discussion' => $this->discussion,
-            'messages'   => $this->discussion->messages()
-                                             ->orderBy($this->sort_by, $this->sort_direction)
-                                             ->get()
+            'messages' => $this->discussion->messages()
+                ->orderBy($this->sort_by, $this->sort_direction)
+                ->get(),
         ]);
     }
 }

@@ -1,4 +1,6 @@
-<?php /** @noinspection ALL */
+<?php
+
+/** @noinspection ALL */
 
 namespace App\Models;
 
@@ -22,44 +24,44 @@ class Base extends Model implements HasMedia
         parent::__construct($attributes);
     }
 
-    public function createdAt() : Attribute
+    public function createdAt(): Attribute
     {
         return Attribute::make(
-            get: fn($value) => $value ? Carbon::parse($value)->format('m/d/Y h:i A') : null
+            get: fn ($value) => $value ? Carbon::parse($value)->format('m/d/Y h:i A') : null
         );
     }
 
-    public function updatedAt() : Attribute
+    public function updatedAt(): Attribute
     {
         return Attribute::make(
-            get: fn($value) => $value ? Carbon::parse($value)->format('m/d/Y h:i A') : null
+            get: fn ($value) => $value ? Carbon::parse($value)->format('m/d/Y h:i A') : null
         );
     }
 
-    public function deletedAt() : Attribute
+    public function deletedAt(): Attribute
     {
         return Attribute::make(
-            get: fn($value) => $value ? Carbon::parse($value)->format('m/d/Y h:i A') : null
+            get: fn ($value) => $value ? Carbon::parse($value)->format('m/d/Y h:i A') : null
         );
     }
 
-    public function getActivitylogOptions() : LogOptions
+    public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-                         ->logAll()
-                         ->logExcept([
-                             'updated_at',
-                             'created_at'
-                         ])
-                         ->logOnlyDirty()
-                         ->dontSubmitEmptyLogs()
-                         ->useLogName('Database');
+            ->logAll()
+            ->logExcept([
+                'updated_at',
+                'created_at',
+            ])
+            ->logOnlyDirty()
+            ->dontSubmitEmptyLogs()
+            ->useLogName('Database');
     }
 
-    public function registerMediaConversions(?Media $media = null) : void
+    public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion('avatar')
-             ->fit(Fit::Contain, 300, 300)
-             ->nonQueued();
+            ->fit(Fit::Contain, 300, 300)
+            ->nonQueued();
     }
 }
