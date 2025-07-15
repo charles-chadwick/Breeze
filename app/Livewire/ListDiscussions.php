@@ -20,7 +20,7 @@ class ListDiscussions extends Component
         return view('livewire.discussions.list', [
             'discussions' => Discussion::whereRelation('users', 'user_id', '=', auth()->id())
                 ->orderBy($this->sort_by, $this->sort_direction)
-                ->get(),
+                ->paginate(10)
 
         ]);
     }

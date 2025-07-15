@@ -6,8 +6,12 @@
         </h1>
         <div class="shrink-0">
             <flux:dropdown>
-                <flux:button icon:trailing="ellipsis-vertical" />
+                <flux:button icon:trailing="ellipsis-vertical" size="sm" />
                 <flux:menu>
+                    <flux:menu.item icon="chat-bubble-oval-left">
+                        <a href="{{ route('discussions.show', $discussion) }}">See Discussion</a>
+                    </flux:menu.item>
+
                     <flux:menu.item icon="users">
                         Manage Users
                     </flux:menu.item>

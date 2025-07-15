@@ -7,10 +7,11 @@ use App\Models\Discussion;
 use Illuminate\Contracts\View\View;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class ShowDiscussion extends Component
 {
-    use Sortable;
+    use Sortable, WithPagination;
 
     public ?Discussion $discussion;
 
@@ -26,7 +27,7 @@ class ShowDiscussion extends Component
             'discussion' => $this->discussion,
             'messages' => $this->discussion->messages()
                 ->orderBy($this->sort_by, $this->sort_direction)
-                ->get(),
+                ->paginate(4),
         ]);
     }
 }

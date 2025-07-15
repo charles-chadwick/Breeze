@@ -34,7 +34,7 @@
                                 >{{ $message->user->full_name }}</a>
                             </div>
                             <p class="mt-0.5 text-sm text-zinc-500">Replied
-                            <x-partials.date :datetime="$message->created_at" />
+                                <x-partials.date :datetime="$message->created_at" />
                             </p>
                         </div>
                         <div class="mt-2 text-sm text-zinc-900">
@@ -68,14 +68,19 @@
                     </flux:modal>
                 </div>
             </div>
-            @empty
+        @empty
             <p class="mt-2 text-center">There are no messages in this discussion.</p>
         @endforelse
+        <flux:separator class="mt-4" />
+        <div class="pt-2">
+            {{ $messages->links() }}
+        </div>
     </x-partials.card>
     <!-- main body of messages -->
 
     <!-- main reply thing -->
     <x-partials.card class="mt-4">
+        Leave a reply
         <livewire:message-form :discussion="$discussion" />
     </x-partials.card>
     <!-- main reply thing -->

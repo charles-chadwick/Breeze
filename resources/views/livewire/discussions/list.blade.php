@@ -27,5 +27,11 @@
     @empty
         <p>There are no discussions.</p>
     @endforelse
+
+    <x-partials.card class="mt-4">
+        <div class="pt-2">
+            {{ $discussions->links() }}
+        </div>
+    </x-partials.card>
 </div>
 
