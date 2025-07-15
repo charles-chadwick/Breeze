@@ -5,39 +5,13 @@
             :discussion="$discussion"
             class="flex flex-wrap items-center justify-between gap-x-6 gap-y-4 py-2 sm:flex-nowrap"
         />
-        <p class="pb-1">
-            <flux:modal.trigger name="add-message-form">
-                <a
-                    href="#"
-                    class="rounded-full bg-zinc-200 px-2.5 py-1 text-sm font-semibold text-zinc-500 shadow-xs hover:bg-zinc-500 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-600"
-                >
-                    Add Reply
-                </a>
-            </flux:modal.trigger>
 
-        </p>
-        <flux:modal
-            variant="bare"
-            class="w-1/2"
-            name="add-message-form"
-        >
-            <livewire:message-form
-                :discussion="$discussion"
-                wire:key="add-message-form-{{ uniqid() }}"
-                modal_id="add-message-form"
-            />
-        </flux:modal>
     </x-partials.card>
     <!-- header with details and menu -->
 
-    <!-- sorting and searching -->
-    <x-partials.card class="mt-4">
-        <x-partials.sort />
-    </x-partials.card>
-
     <!-- main body of messages -->
     <x-partials.card class="mt-4 flow-root">
-        @foreach($messages as $message)
+        @forelse($messages as $message)
             <div
                 class="relative py-2"
                 wire:key="{{ $message->id }}"
@@ -94,7 +68,16 @@
                     </flux:modal>
                 </div>
             </div>
-        @endforeach
+            @empty
+            <p class="mt-2 text-center">There are no messages in this discussion.</p>
+        @endforelse
     </x-partials.card>
     <!-- main body of messages -->
+
+    <!-- main reply thing -->
+    <x-partials.card class="mt-4">
+        <livewire:message-form :discussion="$discussion" />
+    </x-partials.card>
+    <!-- main reply thing -->
+
 </div>

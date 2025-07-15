@@ -1,8 +1,27 @@
 @php use Carbon\Carbon; @endphp
 <div>
-    <h1 class="font-bold">
-        <a href="{{ route('discussions.show', $discussion) }}">{{ $discussion->title }}</a>
-    </h1>
+    <div class="flex flex-wrap">
+        <h1 class="font-bold grow">
+            <a href="{{ route('discussions.show', $discussion) }}">{{ $discussion->title }}</a>
+        </h1>
+        <div class="shrink-0">
+            <flux:dropdown>
+                <flux:button icon:trailing="ellipsis-vertical" />
+                <flux:menu>
+                    <flux:menu.item icon="users">
+                        Manage Users
+                    </flux:menu.item>
+
+                    <flux:menu.item
+                        variant="danger"
+                        icon="archive-box-arrow-down"
+                    >
+                        Archive
+                    </flux:menu.item>
+                </flux:menu>
+            </flux:dropdown>
+        </div>
+    </div>
 
     <div class="flex flex-wrap items-center justify-between gap-x-6 gap-y-4 py-2 sm:flex-nowrap">
         <div>
@@ -15,10 +34,12 @@
                     >{{ $discussion->user->full_name }}
                     </a>
                 </p>
-                <p>
-                    Updated
-                    <x-partials.date :datetime="$discussion->lastPost()->created_at" />
-                </p>
+                @if($discussion->lastPost() != null)
+                    <p>
+                        Updated
+                        <x-partials.date :datetime="$discussion->lastPost()->created_at" />
+                    </p>
+                @endif
             </div>
         </div>
 

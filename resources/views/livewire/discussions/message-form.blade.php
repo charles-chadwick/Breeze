@@ -1,4 +1,4 @@
-<x-partials.card class="py-4">
+<div class="py-4">
     <form wire:submit="save">
         <flux:editor
             wire:model="content"
@@ -12,4 +12,4 @@
         </button>
         </div>
     </form>
-</x-partials.card>
+</div>
