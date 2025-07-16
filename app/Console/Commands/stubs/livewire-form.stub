@@ -1,0 +1,56 @@
+<?php
+
+namespace App\Livewire;
+
+use App\Models\{model_to_use};
+use Flux\Flux;
+use Illuminate\View\View;
+use Livewire\Component;
+
+class {model_to_use}Form extends Component
+{
+    public $modal_id;
+    public ? {model_to_use} ${model_to_use_lower};
+    {field_list}
+
+    public function mount(? {model_to_use} ${model_to_use_lower}): void
+    {
+        $this->{model_to_use_lower} = ${model_to_use_lower};
+        if (${model_to_use_lower}->id !== null) {
+            $this->fill(${model_to_use_lower});
+        }
+    }
+
+    public function save() : void
+    {
+        $this->validate();
+
+        ${model_to_use_lower}_data = [
+            {field_data}
+        ];
+
+        if ($this->{model_to_use_lower}->id === null) {
+            $this->{model_to_use_lower} = {model_to_use}::create(${model_to_use_lower}_data);
+            $message = 'The {model_to_use_lower} has been successfully created.';
+        } else {
+            $this->{model_to_use_lower}->update(${model_to_use_lower}_data);
+            $message = 'The {model_to_use_lower} has been successfully updated.';
+        }
+
+        Flux::toast(text: $message, heading: 'Success', variant: 'success');
+        Flux::modal($this->modal_id)->close();
+        // $this->redirect(route(), $this->{model_to_use_lower}->id), navigate: true);
+    }
+
+    protected function rules(): array
+    {
+        return [
+            {field_validation}
+        ];
+    }
+
+    public function render(): View
+    {
+        return view('livewire.{model_to_use_lower}.form');
+    }
+}

@@ -11,7 +11,7 @@ class Discussion extends Base
 {
     use HasFactory;
 
-    protected $fillable = [
+    public $fillable = [
         'title',
         'status',
         'user_id',
