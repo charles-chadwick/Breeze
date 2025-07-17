@@ -47,8 +47,7 @@ class UserSeeder extends Seeder
             $role = match (true) {
                 $counter <= 5 => UserRole::Doctor,
                 $counter <= 10 => UserRole::Nurse,
-                $counter <= 15 => UserRole::Assistant,
-                $counter <= 25 => UserRole::Staff,
+                $counter <= 15 => UserRole::Staff,
                 default => UserRole::Patient,
             };
 
