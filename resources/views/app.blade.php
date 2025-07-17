@@ -92,13 +92,16 @@
                         <!-- Current: "bg-zinc-900 text-white", Default: "text-zinc-300 hover:bg-zinc-700 hover:text-white" -->
                         <a
                             href="#"
-                            class="rounded-md bg-zinc-900 px-3 py-2 text-sm font-medium text-white"
+                            class="rounded-md px-3 py-2 text-sm font-medium text-zinc-300 hover:bg-zinc-700 hover:text-white"
                             aria-current="page"
                         >Dashboard</a>
                         <a
                             href="{{ route('discussions.list') }}"
                             class="rounded-md px-3 py-2 text-sm font-medium text-zinc-300 hover:bg-zinc-700 hover:text-white"
-                        >Discussions</a>
+                        >Discussions</a> <a
+                            href="{{ route('appointments.list') }}"
+                            class="rounded-md px-3 py-2 text-sm font-medium text-zinc-300 hover:bg-zinc-700 hover:text-white"
+                        >Appointments</a>
                     </div>
                 </div>
             </div>
@@ -172,7 +175,10 @@
             <a
                 href="{{ route('discussions.list') }}"
                 class="block rounded-md px-3 py-2 text-base font-medium text-zinc-300 hover:bg-zinc-700 hover:text-white"
-            >Discussions</a>
+            >Discussions</a>            <a
+                href="{{ route('appointments.list') }}"
+                class="block rounded-md px-3 py-2 text-base font-medium text-zinc-300 hover:bg-zinc-700 hover:text-white"
+            >Appointments</a>
         </div>
     </div>
 </nav>
